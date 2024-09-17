@@ -1,0 +1,65 @@
+/* 全ページ共通スタイル */
+
+html {
+    font-size: 62.5%;
+    /* font-family: 'Noto Sans JP', sans-serif; */
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    scroll-padding-top: 7rem;
+}
+
+@media (max-width: 500px) {
+    html {
+        font-size: 45%;
+    }
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* 見出し */
+
+h1 {
+    font-size: 3.2rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 2.4rem;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+
+/* メインエリア */
+
+main {
+    font-size: 1.6rem;
+    margin: 1rem;
+}
+
+main a {
+    color: #0000bb;
+}
+
+main a:hover {
+    color: #4444ff;
+    text-decoration:underline;
+}
