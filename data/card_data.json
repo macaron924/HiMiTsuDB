@@ -284,7 +284,7 @@
     {"id": "TOY-005", "character": "みつき", "cardName": "ギンガムチェックグレープ", "category1": "special", "category2": "", "type": "うた", "music": "シークレット・ドリーム", "brand": "ミラクルムーン", "chance": true},
     {"id": "TOY-004", "character": "みつき", "cardName": "パティシエチョコミント", "category1": "special", "category2": "", "type": "ダンス", "music": "シークレット・ドリーム", "brand": "ミラクルムーン", "chance": true},
     {"id": "TOY-003", "character": "みつき", "cardName": "スターリースカイ", "category1": "special", "category2": "", "type": "うた", "music": "シークレット・ドリーム", "brand": "ミラクルムーン", "chance": false},
-    {"id": "TOY-002", "character": "ひまり", "cardName": "ギンガムチェック\u3000チェリー", "category1": "special", "category2": "", "type": "ダンス", "music": "P.O.P.P.Y", "brand": "ポッピンハート", "chance": true},
+    {"id": "TOY-002", "character": "ひまり", "cardName": "ギンガムチェックチェリー", "category1": "special", "category2": "", "type": "ダンス", "music": "P.O.P.P.Y", "brand": "ポッピンハート", "chance": true},
     {"id": "TOY-001", "character": "ひまり", "cardName": "パティシエストロベリー", "category1": "special", "category2": "", "type": "うた", "music": "P.O.P.P.Y", "brand": "ポッピンハート", "chance": true},
     {"id": "TOY-000", "character": "ひまり", "cardName": "レインボースカイ", "category1": "special", "category2": "", "type": "ダンス", "music": "P.O.P.P.Y", "brand": "ポッピンハート", "chance": false},
     {"id": "G1-001", "character": "ひまり", "cardName": "ポッピンハートバズリウムミント", "category1": "gumi", "category2": "", "type": "うた", "music": "P.O.P.P.Y", "brand": "ポッピンハート", "chance": true},
