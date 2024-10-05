@@ -48,6 +48,15 @@ h4 {
 }
 
 
+/* ヘッダーエリア */
+
+header {
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+}
+
+
 /* メインエリア */
 
 main {
@@ -62,4 +71,26 @@ main a {
 main a:hover {
     color: #4444ff;
     text-decoration:underline;
+}
+
+
+/* 一覧部分 */
+
+#content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+#content>div.item, #content>div.card {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    width: 30rem;
+    text-align: center;
+    border: 0.1rem solid #000000;
+}
+
+#content div.brandDiv {
+    text-align: right;
+    font-size: 1.2rem;
 }
