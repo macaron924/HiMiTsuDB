@@ -1,4 +1,5 @@
 let categoryList = [];
+let activeSelections = [];
 
 fetch("./../data/card_data.json")
     .then((r) => r.json())
@@ -58,15 +59,27 @@ fetch("./../data/card_data.json")
             categoryButton.innerHTML = categoryList[i];
             categoryButton.addEventListener("click", function() {
                 let value = this.value;
+                if (activeSelections.length == 0) {
+                    document.querySelectorAll(".card").forEach(element => {
+                        element.classList.add("invisible");
+                    })
+                }
                 if(this.classList.contains("active")){
                     this.classList.remove("active");
+                    activeSelections = activeSelections.filter(i => (i !== value));
                     document.querySelectorAll(`.card.category-${value}`).forEach(element => {
                         element.classList.add("invisible");
                     })
                 }
                 else {
                     this.classList.add("active");
+                    activeSelections.push(value);
                     document.querySelectorAll(`.card.category-${value}`).forEach(element => {
+                        element.classList.remove("invisible");
+                    })
+                }
+                if (activeSelections.length == 0) {
+                    document.querySelectorAll(".card").forEach(element => {
                         element.classList.remove("invisible");
                     })
                 }
