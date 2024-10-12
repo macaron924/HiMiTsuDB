@@ -51,7 +51,8 @@ h4 {
 /* ヘッダーエリア */
 
 header {
-    background-color: #ffffff;
+    z-index: 99999;
+    background-color: lightyellow;
     position: sticky;
     top: 0;
 }
@@ -74,6 +75,26 @@ main a:hover {
 }
 
 
+/* カテゴリ選択 */
+
+#category-select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+#category-select>button {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    text-align: center;
+    border: 0.1rem solid #000000;
+}
+
+#category-select>button.active {
+    background: yellow;
+}
+
+
 /* 一覧部分 */
 
 #content {
@@ -83,6 +104,8 @@ main a:hover {
 }
 
 #content>div.item, #content>div.card {
+    position: relative;
+    overflow: hidden;
     margin: 0.5rem;
     padding: 0.5rem;
     width: 30rem;
@@ -90,7 +113,53 @@ main a:hover {
     border: 0.1rem solid #000000;
 }
 
+#content>div.item.invisible, #content>div.card.invisible {
+    display: none;
+}
+
 #content div.brandDiv {
+    margin-bottom: 0.5rem;
     text-align: right;
     font-size: 1.2rem;
+}
+
+#content div.musicDiv {
+    margin-top: 0.5rem;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+#content .ribbon {
+    display: inline-block;
+    position: absolute;
+    padding: 0.5rem 0;
+    text-align: center;
+    background: #000000;
+    color: #ffffff;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+#content .ribbon1 {
+    left: -1rem;
+    top: 0.5rem;
+    width: 4rem;
+}
+
+#content .ribbon2 {
+    right: -1rem;
+    bottom: 0.5rem;
+    width: 4rem;
+}
+
+#content>.type-dance>.ribbon {
+    background: magenta
+}
+
+#content>.type-sing>.ribbon {
+    background: cyan
+}
+
+#content>.type-fashion>.ribbon {
+    background: yellow
 }
