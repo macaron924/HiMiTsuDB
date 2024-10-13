@@ -87,7 +87,7 @@ fetch("./../data/card_data.json")
                 const newValue = value > 0 ? parseInt(value) - 1 : 0;
                 inp.value = newValue;
 
-                const id = inp.id.split("_")[0];
+                const id = inp.id;
                 if (newValue == 0){
                     delete haveList[id];
                     inp.classList.remove("have");
@@ -107,7 +107,7 @@ fetch("./../data/card_data.json")
                 const newValue = value == "" ? 1 : parseInt(value) + 1;
                 inp.value = newValue;
                 
-                const id = inp.id.split("_")[0];
+                const id = inp.id;
                 if (newValue == 0){
                     delete haveList[id];
                     inp.classList.remove("have");
@@ -119,7 +119,7 @@ fetch("./../data/card_data.json")
             })
             const numBox = document.createElement("input");
             numBox.type = "number";
-            numBox.id = `${itemID}_1`;
+            numBox.id = itemID;
             if (haveList[itemID] != undefined) {
                 numBox.value = haveList[itemID];
                 numBox.classList.add("have");
