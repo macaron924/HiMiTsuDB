@@ -75,6 +75,15 @@ main a:hover {
 }
 
 
+/* 保存リセット */  
+
+#storageReset {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 0.1rem solid #000000;
+}
+
+
 /* カテゴリ選択 */
 
 #category-select {
@@ -198,4 +207,22 @@ main a:hover {
 
 #content>.part-accessory>.partIconDiv {
     background-image: url("../images/accessory.png");
+}
+
+#content .numBoxDiv {
+    font-size: 2rem;
+    margin: auto;
+    margin-top: 2rem;
+    width: 15rem;
+    border: 0.1rem solid #000000;
+}
+
+#content .numBoxDiv>input {
+    display: inline-block;
+    text-align: center;
+}
+
+#content .numBoxDiv>input {
+    padding: 1rem;
+    width: 10rem;
 }
