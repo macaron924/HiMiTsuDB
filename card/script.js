@@ -19,7 +19,9 @@ fetch("./../data/card_data.json")
                 default:
                     div.className = "card";
             }
+
             let category1 = obj.category1;
+            let category2 = obj.category2;
             div.classList.add(`category-${category1}`);
             if(!categoryList.includes(category1)) categoryList.push(category1);
 
@@ -48,6 +50,25 @@ fetch("./../data/card_data.json")
             musicDiv.className = "musicDiv";
             musicDiv.innerText = `💿 ${obj.music}`;
             div.appendChild(musicDiv);
+
+            let category1str = "";
+            switch (category1) {
+                case "special":
+                    category1str = "スペシャル";
+                    break;
+                case "gumi":
+                    category1str = "アイプリカード♪コレクショングミ";
+                    break;
+                case "millefeui":
+                    category1str = "ミルフィーカード";
+                    break;
+                default:
+                    category1str = `${category1}だん`;
+            }
+            const categoryDiv = document.createElement("div");
+            categoryDiv.className = "categoryDiv";
+            categoryDiv.innerText = `${category1str} / ${category2}`;
+            div.appendChild(categoryDiv);
 
             //div.innerText = `${obj.brandName} / ${obj.character} / ${obj.cardName}`;
             document.getElementById("content").appendChild(div);

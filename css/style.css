@@ -117,6 +117,10 @@ main a:hover {
     display: none;
 }
 
+#content>div.item.re {
+    background: #eeeeee;
+}
+
 #content div.brandDiv {
     margin-bottom: 0.5rem;
     text-align: right;
@@ -124,6 +128,12 @@ main a:hover {
 }
 
 #content div.musicDiv {
+    margin-top: 0.5rem;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+#content div.categoryDiv {
     margin-top: 0.5rem;
     text-align: left;
     font-size: 1.2rem;
@@ -162,4 +172,30 @@ main a:hover {
 
 #content>.type-fashion>.ribbon {
     background: yellow
+}
+
+#content .partIconDiv {
+    position: absolute;
+    height: 3.2rem;
+    width: 3.2rem;
+}
+
+#content>.part-one-piece>.partIconDiv {
+    background-image: url("../images/one-piece.png");
+}
+
+#content>.part-tops>.partIconDiv {
+    background-image: url("../images/tops.png");
+}
+
+#content>.part-bottoms>.partIconDiv {
+    background-image: url("../images/bottoms.png");
+}
+
+#content>.part-shoes>.partIconDiv {
+    background-image: url("../images/shoes.png");
+}
+
+#content>.part-accessory>.partIconDiv {
+    background-image: url("../images/accessory.png");
 }
