@@ -137,11 +137,11 @@ fetch("./../data/item_data.json")
         })
 
         categoryList.sort();
-        for (let i in categoryList) {
+        categoryList.forEach((category) => {
             const categoryButton = document.createElement("button");
-            categoryButton.value = categoryList[i];
+            categoryButton.value = category;
             let category1str = "";
-            switch (categoryList[i]) {
+            switch (category) {
                 case "special":
                     category1str = "スペシャル";
                     break;
@@ -152,7 +152,7 @@ fetch("./../data/item_data.json")
                     category1str = "ミルフィーカード";
                     break;
                 default:
-                    category1str = `${categoryList[i]}だん`;
+                    category1str = `${category}だん`;
             }
             categoryButton.innerHTML = category1str;
             categoryButton.addEventListener("click", function() {
@@ -183,7 +183,7 @@ fetch("./../data/item_data.json")
                 }
             })
             document.getElementById("category-select").appendChild(categoryButton);
-        }
+        });
 
         document.getElementById("storageReset").addEventListener("click", function() {
             localStorage.removeItem("itemHaveList");
