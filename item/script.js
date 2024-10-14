@@ -86,7 +86,7 @@ fetch("./../data/item_data.json")
             decrementButton.addEventListener("click", function() {
                 const inp = this.parentElement.querySelector("input");
                 const value = inp.value;
-                
+
                 const newValue = value > 0 ? parseInt(value) - 1 : 0;
                 inp.value = newValue;
 
@@ -106,10 +106,10 @@ fetch("./../data/item_data.json")
             incrementButton.addEventListener("click", function() {
                 const inp = this.parentElement.querySelector("input");
                 const value = inp.value;
-                
+
                 const newValue = value == "" ? 1 : parseInt(value) + 1;
                 inp.value = newValue;
-                
+
                 const id = inp.id;
                 if (newValue == 0){
                     delete haveList[id];
