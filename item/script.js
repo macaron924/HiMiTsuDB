@@ -4,6 +4,10 @@ let activeSelections = [];
 let haveList = localStorage.getItem("itemHaveList");
 haveList = haveList ? JSON.parse(haveList) : {};
 
+function isObject(o) {
+    return (o instanceof Object && !(o instanceof Array)) ? true : false;
+};
+
 fetch("./../data/item_data.json")
     .then((r) => r.json())
     .then((res) => {
@@ -185,7 +189,35 @@ fetch("./../data/item_data.json")
             document.getElementById("category-select").appendChild(categoryButton);
         });
 
+        document.getElementById("storageImport").addEventListener("click", function() {
+            let inputText = document.getElementById("dataInput").value;
+            try {
+                if(isObject(JSON.parse(inputText)) === false) throw "IsNotValidObjectError";
+            } catch(error) {
+                this.innerText = "インポート失敗。";
+                setTimeout(() => {
+                    this.innerText = "インポート";
+                }, 1000);
+                return -1;
+            }
+            haveList = JSON.parse(inputText);
+            localStorage.setItem("itemHaveList", JSON.stringify(haveList));
+            this.innerText = "インポート完了。1秒後にリロードします...";
+            setTimeout(() => {
+                window.location.href = window.location.href;
+            }, 1000);
+        })
+
+        document.getElementById("storageExport").addEventListener("click", function() {
+            let data = haveList;
+            document.getElementById("dataInput").value = JSON.stringify(data);
+        })
+
         document.getElementById("storageReset").addEventListener("click", function() {
             localStorage.removeItem("itemHaveList");
+            this.innerText = "保存リセット完了。1秒後にリロードします...";
+            setTimeout(() => {
+                window.location.href = window.location.href;
+            }, 1000);
         })
     })

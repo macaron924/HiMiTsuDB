@@ -75,9 +75,20 @@ main a:hover {
 }
 
 
-/* 保存リセット */  
+/* データ入出力エリア */
 
-#storageReset {
+textarea#dataInput {
+    display: block;
+    width: 100%;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 0.1rem solid #000000;
+}
+
+
+/* 保存関係ボタン */  
+
+#storageReset, #storageImport, #storageExport {
     margin: 0.5rem;
     padding: 0.5rem;
     border: 0.1rem solid #000000;
