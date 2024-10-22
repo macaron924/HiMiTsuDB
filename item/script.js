@@ -1,6 +1,7 @@
 const PART_LIST = ["one-piece", "tops", "bottoms", "shoes", "accessory"]
 let categoryList = [];
 let activeSelections = [];
+let inputRefList = {};
 
 let haveList = localStorage.getItem("itemHaveList");
 haveList = haveList ? JSON.parse(haveList) : {};
@@ -17,6 +18,11 @@ Promise.all([
     .then((res) => {
         let itemRes = res[0];
         let coordinateRes = res[1];
+
+        itemRes.forEach((obj) => {
+            inputRefList[obj.imageId] = [];
+        })
+
         coordinateRes.forEach((obj) => {
             const div = document.createElement("div");
             div.className = "item";
@@ -57,12 +63,43 @@ Promise.all([
             PART_LIST.forEach((part) => {
                 const itemIdArray = obj[part].split(" ");
                 const itemID = itemIdArray[0];
+                if (itemID == "") return;
+
                 let reStr = "";
                 if (itemIdArray.length > 1) reStr = " re";
-                if (itemID == "") return;
-    
+
                 const numBoxDiv = document.createElement("div");
                 numBoxDiv.className = `numBoxDiv part-${part}${reStr}`;
+
+                if (itemIdArray.length > 1) {
+                    const reDetailDiv = document.createElement("div");
+                    reDetailDiv.className = "reDetailDiv";
+                    let originCategory1 = "";
+                    let originCategory2 = "";
+                    itemRes.forEach((item) => {
+                        if (item.imageId == itemID) {
+                            originCategory1 = item.category1;
+                            originCategory2 = item.category2
+                            return;
+                        }
+                    })
+                    let originCategory1str = "";
+                    switch (originCategory1) {
+                        case "special":
+                            originCategory1str = "スペシャル";
+                            break;
+                        case "gumi":
+                            originCategory1str = "アイプリカード♪コレクショングミ";
+                            break;
+                        case "millefeui":
+                            originCategory1str = "ミルフィーカード";
+                            break;
+                        default:
+                            originCategory1str = `${category1}だん`;
+                    }
+                    reDetailDiv.innerText = `初登場: ${originCategory1str} / ${originCategory2}`;
+                    numBoxDiv.appendChild(reDetailDiv);
+                }
 
                 const partIconDiv = document.createElement("div");
                 partIconDiv.className = "partIconDiv";
@@ -87,6 +124,12 @@ Promise.all([
                         inp.classList.add("have");
                     }
                     localStorage.setItem("itemHaveList", JSON.stringify(haveList));
+
+                    if (inputRefList[id].length > 1) {
+                        inputRefList[id].forEach((element) => {
+                            element.value = newValue;
+                        })
+                    }
                 })
 
                 const incrementButton = document.createElement("button");
@@ -108,15 +151,42 @@ Promise.all([
                         inp.classList.add("have");
                     }
                     localStorage.setItem("itemHaveList", JSON.stringify(haveList));
+
+                    if (inputRefList[id].length > 1) {
+                        inputRefList[id].forEach((element) => {
+                            element.value = newValue;
+                        })
+                    }
                 })
 
                 const numBox = document.createElement("input");
                 numBox.type = "number";
                 numBox.setAttribute("itemID", itemID)
+                numBox.addEventListener("change", function() {
+                    const inp = this;
+                    const newValue = inp.value;
+
+                    const id = inp.getAttribute("itemID");
+                    if (newValue == 0){
+                        delete haveList[id];
+                        inp.classList.remove("have");
+                    }else {
+                        haveList[id] = newValue.toString();
+                        inp.classList.add("have");
+                    }
+                    localStorage.setItem("itemHaveList", JSON.stringify(haveList));
+
+                    if (inputRefList[id].length > 1) {
+                        inputRefList[id].forEach((element) => {
+                            element.value = newValue;
+                        })
+                    }
+                })
                 if (haveList[numBox.getAttribute("itemID")] != undefined) {
                     numBox.value = haveList[numBox.getAttribute("itemID")];
-                    numBox.classList.add("have");
+                    //numBox.classList.add("have");
                 }
+                inputRefList[itemID].push(numBox)
                 
                 numBoxDiv.appendChild(partIconDiv);
                 numBoxDiv.appendChild(decrementButton);

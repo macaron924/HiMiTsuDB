@@ -204,6 +204,7 @@ textarea#dataInput {
     font-size: 2rem;
     margin: auto;
     margin-top: 2rem;
+    margin-bottom: 4rem;
     width: 20rem;
     padding: 0;
     padding-left: 3.2rem;
@@ -212,6 +213,11 @@ textarea#dataInput {
 
 #content .numBoxDiv.re {
     background: #eeeeee;
+}
+
+.increment, .decrement {
+    height: 3.2rem;
+    width: 3.2rem;
 }
 
 #content .numBoxDiv>input {
@@ -230,6 +236,13 @@ textarea#dataInput {
     top: 12.5%;
     height: 3.2rem;
     width: 3.2rem;
+}
+
+#content .reDetailDiv {
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 4.5rem;
 }
 
 #content .part-one-piece>.partIconDiv {
