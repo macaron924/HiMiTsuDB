@@ -94,7 +94,7 @@ textarea#dataInput {
 
 /* 保存関係ボタン */  
 
-#storageReset, #storageImport, #storageExport {
+#storageReset, #storageImport, #storageExport, #compressionStorageImport, #compressionStorageExport {
     background: #ffffff;
     margin: 0.5rem;
     padding: 0.5rem;

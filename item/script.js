@@ -6,6 +6,8 @@ let inputRefList = {};
 let haveList = localStorage.getItem("itemHaveList");
 haveList = haveList ? JSON.parse(haveList) : {};
 
+const COMPRESS_MODE = "deflate-raw";
+
 function isObject(o) {
     return (o instanceof Object && !(o instanceof Array)) ? true : false;
 };
@@ -278,8 +280,47 @@ Promise.all([
         })
 
         document.getElementById("storageExport").addEventListener("click", function() {
-            let data = sortHaveJson(haveList);;
+            let data = sortHaveJson(haveList);
             document.getElementById("dataInput").value = JSON.stringify(data);
+        })
+
+        document.getElementById("compressionStorageImport").addEventListener("click", function() {
+            let inputText = document.getElementById("dataInput").value;
+            fetch('data:application/octet-string;base64,' + inputText)
+                .then(res => res.blob())
+                .then(blobData => {
+                    const decompressedStream = blobData.stream().pipeThrough(new DecompressionStream(COMPRESS_MODE));
+                    new Response(decompressedStream).text()
+                        .then(decompressedText => {
+                            try {
+                                if(isObject(JSON.parse(decompressedText)) === false) throw "IsNotValidObjectError";
+                            } catch(error) {
+                                this.innerText = "インポート失敗。";
+                                setTimeout(() => {
+                                    this.innerText = "インポート";
+                                }, 1000);
+                                return -1;
+                            }
+                            haveList = JSON.parse(decompressedText);
+                            localStorage.setItem("cardHaveList", JSON.stringify(haveList));
+                            this.innerText = "インポート完了。1秒後にリロードします...";
+                            setTimeout(() => {
+                                window.location.href = window.location.href;
+                            }, 1000);
+                        })
+                })
+        })
+
+        document.getElementById("compressionStorageExport").addEventListener("click", function() {
+            let data = JSON.stringify(sortHaveJson(haveList));
+            const dataStream = new Blob([data]).stream();
+            const compressedStream = dataStream.pipeThrough(new CompressionStream(COMPRESS_MODE));
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                document.getElementById("dataInput").value = reader.result.replace(/data:.*\/.*;base64,/, '');
+            };
+            new Response(compressedStream).blob()
+                .then(res => reader.readAsDataURL(res));
         })
 
         document.getElementById("storageReset").addEventListener("click", function() {
