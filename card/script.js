@@ -93,6 +93,10 @@ fetch("./../data/card_data.json")
 
             const numBoxDiv = document.createElement("div");
             numBoxDiv.className = "numBoxDiv";
+
+            const haveRibbon = document.createElement("div");
+            haveRibbon.className = "haveRibbon";
+
             const decrementButton = document.createElement("button");
             decrementButton.className = "decrement";
             decrementButton.innerText = "-";
@@ -108,11 +112,12 @@ fetch("./../data/card_data.json")
                     delete haveList[id];
                     inp.classList.remove("have");
                 }else {
-                    haveList[id] = newValue.toString();
+                    haveList[id] = newValue;
                     inp.classList.add("have");
                 }
                 localStorage.setItem("cardHaveList", JSON.stringify(haveList));
             })
+
             const incrementButton = document.createElement("button");
             incrementButton.className = "increment";
             incrementButton.innerText = "+";
@@ -128,18 +133,36 @@ fetch("./../data/card_data.json")
                     delete haveList[id];
                     inp.classList.remove("have");
                 }else {
-                    haveList[id] = newValue.toString();
+                    haveList[id] = newValue;
                     inp.classList.add("have");
                 }
                 localStorage.setItem("cardHaveList", JSON.stringify(haveList));
             })
+
             const numBox = document.createElement("input");
             numBox.type = "number";
             numBox.id = itemID;
+            numBox.addEventListener("change", function() {
+                const inp = this;
+                const newValue = inp.value;
+
+                const id = inp.id;
+                if (newValue == 0){
+                    delete haveList[id];
+                    inp.classList.remove("have");
+                }else {
+                    haveList[id] = parseInt(newValue);;
+                    inp.classList.add("have");
+                }
+                localStorage.setItem("cardHaveList", JSON.stringify(haveList));
+            })
             if (haveList[itemID] != undefined) {
                 numBox.value = haveList[itemID];
                 numBox.classList.add("have");
+                numBoxDiv.classList.add("have")
             }
+
+            numBoxDiv.appendChild(haveRibbon);
             numBoxDiv.appendChild(decrementButton);
             numBoxDiv.appendChild(numBox);
             numBoxDiv.appendChild(incrementButton);

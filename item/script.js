@@ -113,9 +113,11 @@ Promise.all([
                     numBoxDiv.appendChild(reDetailDiv);
                 }
 
+                const haveRibbon = document.createElement("div");
+                haveRibbon.className = "haveRibbon";
+
                 const partIconDiv = document.createElement("div");
                 partIconDiv.className = "partIconDiv";
-                div.appendChild(partIconDiv);
 
                 const decrementButton = document.createElement("button");
                 decrementButton.className = "decrement";
@@ -132,7 +134,7 @@ Promise.all([
                         delete haveList[id];
                         inp.classList.remove("have");
                     }else {
-                        haveList[id] = newValue.toString();
+                        haveList[id] = newValue;
                         inp.classList.add("have");
                     }
                     localStorage.setItem("itemHaveList", JSON.stringify(haveList));
@@ -159,7 +161,7 @@ Promise.all([
                         delete haveList[id];
                         inp.classList.remove("have");
                     }else {
-                        haveList[id] = newValue.toString();
+                        haveList[id] = newValue;
                         inp.classList.add("have");
                     }
                     localStorage.setItem("itemHaveList", JSON.stringify(haveList));
@@ -183,7 +185,7 @@ Promise.all([
                         delete haveList[id];
                         inp.classList.remove("have");
                     }else {
-                        haveList[id] = newValue.toString();
+                        haveList[id] = parseInt(newValue);
                         inp.classList.add("have");
                     }
                     localStorage.setItem("itemHaveList", JSON.stringify(haveList));
@@ -196,11 +198,13 @@ Promise.all([
                 })
                 if (haveList[numBox.getAttribute("itemID")] != undefined) {
                     numBox.value = haveList[numBox.getAttribute("itemID")];
-                    //numBox.classList.add("have");
+                    numBox.classList.add("have");
+                    numBoxDiv.classList.add("have")
                 }
                 inputRefList[itemID].push(numBox)
                 
                 numBoxDiv.appendChild(partIconDiv);
+                numBoxDiv.appendChild(haveRibbon);
                 numBoxDiv.appendChild(decrementButton);
                 numBoxDiv.appendChild(numBox);
                 numBoxDiv.appendChild(incrementButton);
@@ -302,7 +306,7 @@ Promise.all([
                                 return -1;
                             }
                             haveList = JSON.parse(decompressedText);
-                            localStorage.setItem("cardHaveList", JSON.stringify(haveList));
+                            localStorage.setItem("itemHaveList", JSON.stringify(haveList));
                             this.innerText = "インポート完了。1秒後にリロードします...";
                             setTimeout(() => {
                                 window.location.href = window.location.href;

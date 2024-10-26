@@ -201,6 +201,7 @@ textarea#dataInput {
 
 #content .numBoxDiv {
     position: relative;
+    overflow: hidden;
     font-size: 2rem;
     margin: auto;
     margin-top: 2rem;
@@ -213,6 +214,25 @@ textarea#dataInput {
 
 #content .numBoxDiv.re {
     background: #eeeeee;
+}
+
+#content .numBoxDiv>.haveRibbon {
+    display: none;
+    position: absolute;
+    padding: 0.5rem 0;
+    text-align: center;
+    background: #000000;
+    color: #ffffff;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    right: -1rem;
+    top: 0.5rem;
+    width: 4rem;
+    background: greenyellow
+}
+
+#content .numBoxDiv.have>.haveRibbon {
+    display: inline-block;
 }
 
 .increment, .decrement {
