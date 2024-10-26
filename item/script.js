@@ -10,6 +10,16 @@ function isObject(o) {
     return (o instanceof Object && !(o instanceof Array)) ? true : false;
 };
 
+function sortHaveJson(json) {
+    const keyList = Object.keys(json);
+    keyList.sort();
+    let newJson = {};
+    keyList.forEach((key) => {
+        newJson[key] = json[key];
+    })
+    return newJson;
+}
+
 Promise.all([
     fetch("./../data/item_data.json"),
     fetch("./../data/coordinate_data.json")
@@ -268,7 +278,7 @@ Promise.all([
         })
 
         document.getElementById("storageExport").addEventListener("click", function() {
-            let data = haveList;
+            let data = sortHaveJson(haveList);;
             document.getElementById("dataInput").value = JSON.stringify(data);
         })
 

@@ -8,6 +8,16 @@ function isObject(o) {
     return (o instanceof Object && !(o instanceof Array)) ? true : false;
 };
 
+function sortHaveJson(json) {
+    const keyList = Object.keys(json);
+    keyList.sort();
+    let newJson = {};
+    keyList.forEach((key) => {
+        newJson[key] = json[key];
+    })
+    return newJson;
+}
+
 fetch("./../data/card_data.json")
     .then((r) => r.json())
     .then((res) => {
@@ -206,7 +216,7 @@ fetch("./../data/card_data.json")
         })
 
         document.getElementById("storageExport").addEventListener("click", function() {
-            let data = haveList;
+            let data = sortHaveJson(haveList);;
             document.getElementById("dataInput").value = JSON.stringify(data);
         })
 
