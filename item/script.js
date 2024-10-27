@@ -290,6 +290,15 @@ Promise.all([
 
         document.getElementById("compressionStorageImport").addEventListener("click", function() {
             let inputText = document.getElementById("dataInput").value;
+            if (inputText.startsWith("item-")) {
+                inputText = inputText.replace("item-", "");
+            } else {
+                this.innerText = "インポート失敗。";
+                setTimeout(() => {
+                    this.innerText = "インポート";
+                }, 1000);
+                return -1;
+            }
             fetch('data:application/octet-string;base64,' + inputText)
                 .then(res => res.blob())
                 .then(blobData => {
@@ -321,7 +330,7 @@ Promise.all([
             const compressedStream = dataStream.pipeThrough(new CompressionStream(COMPRESS_MODE));
             const reader = new FileReader();
             reader.onloadend = () => {
-                document.getElementById("dataInput").value = reader.result.replace(/data:.*\/.*;base64,/, '');
+                document.getElementById("dataInput").value = `item-${reader.result.replace(/data:.*\/.*;base64,/, '')}`;
             };
             new Response(compressedStream).blob()
                 .then(res => reader.readAsDataURL(res));
