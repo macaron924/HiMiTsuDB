@@ -1,3 +1,32 @@
+/* アイコン */
+.mdi--cards {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='m21.47 4.35l-1.34-.56v9.03l2.43-5.86c.41-1.02-.06-2.19-1.09-2.61m-19.5 3.7L6.93 20a2.01 2.01 0 0 0 1.81 1.26c.26 0 .53-.05.79-.16l7.37-3.05c.75-.31 1.21-1.05 1.23-1.79c.01-.26-.04-.55-.13-.81L13 3.5a1.95 1.95 0 0 0-1.81-1.25c-.26 0-.52.06-.77.15L3.06 5.45a1.994 1.994 0 0 0-1.09 2.6m16.15-3.8a2 2 0 0 0-2-2h-1.45l3.45 8.34'/%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}
+.mdi--clothes-hanger {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 4a3.5 3.5 0 0 0-3.5 3.5h2A1.5 1.5 0 0 1 12 6a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 9c-.55 0-1 .45-1 1v1.75L2.4 18.2A1 1 0 0 0 3 20h18a1 1 0 0 0 .6-1.8L13 11.75v-.9a3.5 3.5 0 0 0 2.5-3.35A3.5 3.5 0 0 0 12 4m0 9.5l6 4.5H6Z'/%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}
+
+
 /* 全ページ共通スタイル */
 
 html {
@@ -63,6 +92,30 @@ header h1 {
 }
 
 
+/* フッターエリア */
+
+footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 1rem;
+    background-color: #eeeeee;
+}
+
+footer * {
+    margin: 0.5rem;
+}
+
+footer h3 {
+    font-weight: normal;
+}
+
+footer .quote-box {
+    width: calc(100% - 25rem);
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+
 /* メインエリア */
 
 main {
@@ -77,6 +130,40 @@ main a {
 main a:hover {
     color: #4444ff;
     text-decoration:underline;
+}
+
+
+/* メニュー */
+
+#menu-button-box {
+    display: block;
+    text-align: center;
+}
+
+.menu-button-content {
+    border: 0.5rem solid #cccccc;
+    text-align: center;
+    margin: 4%;
+    display: inline-block;
+    aspect-ratio: 1 / 1;
+    width: calc(40%);
+    background: #ffffff;
+}
+
+.menu-button-content>a {
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+}
+
+.menu-button-content>a>span {
+    color: darkorange;
+    width: 90%;
+    height: 90%;
+}
+
+.menu-button-content>a>span:hover {
+    color: darkgoldenrod;
 }
 
 
