@@ -115,6 +115,9 @@ Promise.all([
 
                 const haveRibbon = document.createElement("div");
                 haveRibbon.className = "haveRibbon";
+                const haveRibbonContent = document.createElement("div");
+                haveRibbonContent.className = "haveRibbonContent";
+                haveRibbon.appendChild(haveRibbonContent);
 
                 const partIconDiv = document.createElement("div");
                 partIconDiv.className = "partIconDiv";
@@ -263,86 +266,6 @@ Promise.all([
             })
             document.getElementById("category-select").appendChild(categoryButton);
         });
-
-        document.getElementById("storageImport").addEventListener("click", function() {
-            let inputText = document.getElementById("dataInput").value;
-            try {
-                if(isObject(JSON.parse(inputText)) === false) throw "IsNotValidObjectError";
-            } catch(error) {
-                this.innerText = "インポート失敗。";
-                setTimeout(() => {
-                    this.innerText = "インポート";
-                }, 1000);
-                return -1;
-            }
-            haveList = JSON.parse(inputText);
-            localStorage.setItem("itemHaveList", JSON.stringify(haveList));
-            this.innerText = "インポート完了。1秒後にリロードします...";
-            setTimeout(() => {
-                window.location.href = window.location.href;
-            }, 1000);
-        })
-
-        document.getElementById("storageExport").addEventListener("click", function() {
-            let data = sortHaveJson(haveList);
-            document.getElementById("dataInput").value = JSON.stringify(data);
-        })
-
-        document.getElementById("compressionStorageImport").addEventListener("click", function() {
-            let inputText = document.getElementById("dataInput").value;
-            if (inputText.startsWith("item-")) {
-                inputText = inputText.replace("item-", "");
-            } else {
-                this.innerText = "インポート失敗。";
-                setTimeout(() => {
-                    this.innerText = "インポート";
-                }, 1000);
-                return -1;
-            }
-            fetch('data:application/octet-string;base64,' + inputText)
-                .then(res => res.blob())
-                .then(blobData => {
-                    const decompressedStream = blobData.stream().pipeThrough(new DecompressionStream(COMPRESS_MODE));
-                    new Response(decompressedStream).text()
-                        .then(decompressedText => {
-                            try {
-                                if(isObject(JSON.parse(decompressedText)) === false) throw "IsNotValidObjectError";
-                            } catch(error) {
-                                this.innerText = "インポート失敗。";
-                                setTimeout(() => {
-                                    this.innerText = "インポート";
-                                }, 1000);
-                                return -1;
-                            }
-                            haveList = JSON.parse(decompressedText);
-                            localStorage.setItem("itemHaveList", JSON.stringify(haveList));
-                            this.innerText = "インポート完了。1秒後にリロードします...";
-                            setTimeout(() => {
-                                window.location.href = window.location.href;
-                            }, 1000);
-                        })
-                })
-        })
-
-        document.getElementById("compressionStorageExport").addEventListener("click", function() {
-            let data = JSON.stringify(sortHaveJson(haveList));
-            const dataStream = new Blob([data]).stream();
-            const compressedStream = dataStream.pipeThrough(new CompressionStream(COMPRESS_MODE));
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                document.getElementById("dataInput").value = `item-${reader.result.replace(/data:.*\/.*;base64,/, '')}`;
-            };
-            new Response(compressedStream).blob()
-                .then(res => reader.readAsDataURL(res));
-        })
-
-        document.getElementById("storageReset").addEventListener("click", function() {
-            localStorage.removeItem("itemHaveList");
-            this.innerText = "保存リセット完了。1秒後にリロードします...";
-            setTimeout(() => {
-                window.location.href = window.location.href;
-            }, 1000);
-        })
     })
 
 /*

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head prefix="og: https://ogp.me/ns#">
+        <meta http-equiv="content-type" charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta property="og:url" content="https://macaron924.github.io/HiMiTsuDB/setting/">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="HiMiTsuDB">
+        <meta property="og:description" content="ひみつのDB">
+        <meta property="og:site_name" content="HiMiTsuDB">
+        <meta property="og:image" content="https://macaron924.github.io/HiMiTsuDB/images/icon.png">
+        <meta name="twitter:card" content="summary">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="./../images/icon.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://unpkg.com/destyle.css@1.0.5/destyle.css">
+        <link rel="stylesheet" href="./../css/style.css">
+        <script src="./script.js" defer></script>
+
+        <title>Setting - HiMiTsuDB</title>
+    </head>
+
+    <body>
+        <header><h1><a href="./../">HiMiTsuDB</a></h1></header>
+        <main>
+            <div class="setting-content">
+                <h2>データ管理について</h2>
+                <br>
+                <p>このサイトでは、所持データ管理にローカルストレージを使用しています。</p>
+                <p>データは各端末で保存/参照のみに用いられ、外部に送信されることはございません。</p>
+            </div>
+            <br>
+            <div class="setting-content">
+                <h2>アイプリカード管理</h2>
+                <textarea id="card_dataInput"></textarea>
+                <button id="card_storageImport">インポート</button>
+                <button id="card_storageExport">エクスポート</button>
+                <button id="card_compressionStorageImport">圧縮インポート</button>
+                <button id="card_compressionStorageExport">圧縮エクスポート</button>
+                <button id="card_storageReset">保存リセット</button>
+            </div>
+            <br>
+            <div class="setting-content">
+                <h2>コーデアイテム管理</h2>
+                <textarea id="item_dataInput"></textarea>
+                <button id="item_storageImport">インポート</button>
+                <button id="item_storageExport">エクスポート</button>
+                <button id="item_compressionStorageImport">圧縮インポート</button>
+                <button id="item_compressionStorageExport">圧縮エクスポート</button>
+                <button id="item_storageReset">保存リセット</button>
+            </div>
+        </main>
+        <footer><p><h3>HiMiTsuDB</h3></p><p>このサイトでは、アイコンの一部に<a href="https://pictogrammers.com/library/mdi/">Material Design Icons</a>を使用しています。</p></footer>
+    </body>
+</html>

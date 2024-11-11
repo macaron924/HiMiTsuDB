@@ -25,6 +25,19 @@
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
 }
+.mdi--question-mark-circle {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='m15.07 11.25l-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2a2 2 0 0 0-2 2H8a4 4 0 0 1 4-4a4 4 0 0 1 4 4a3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10c0-5.53-4.5-10-10-10'/%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}
 
 
 /* 全ページ共通スタイル */
@@ -38,7 +51,7 @@ html {
 
 @media (max-width: 500px) {
     html {
-        font-size: 45%;
+        font-size: 35%;
     }
 }
 
@@ -88,7 +101,7 @@ header {
 }
 
 header h1 {
-    margin: 0.5rem;
+    margin: 1rem;
 }
 
 
@@ -142,11 +155,13 @@ main a:hover {
 
 .menu-button-content {
     border: 0.5rem solid #cccccc;
+    box-sizing: border-box;
     text-align: center;
-    margin: 4%;
+    margin: 1%;
+    padding: 1%;
     display: inline-block;
     aspect-ratio: 1 / 1;
-    width: calc(40%);
+    width: 32%;
     background: #ffffff;
 }
 
@@ -154,6 +169,7 @@ main a:hover {
     width: 100%;
     height: 100%;
     font-size: 2rem;
+    font-weight: bold;
 }
 
 .menu-button-content>a>span {
@@ -166,13 +182,45 @@ main a:hover {
     color: darkgoldenrod;
 }
 
+#menu-button-box-2 {
+    display: block;
+    text-align: center;
+}
+
+.menu-button-content-2 {
+    border: 0.5rem solid #cccccc;
+    text-align: center;
+    margin: 1%;
+    padding: 1%;
+    width: calc(66% + 0.5rem);
+    display: inline-block;
+    background: #ffffff;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+/* データ管理画面 */
+
+.setting-content {
+    background-color: #ffffffaa;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+.setting-content span {
+    width: 2.2rem;
+    height: 2.2rem;
+    vertical-align: bottom;
+}
+
 
 /* データ入出力エリア */
 
-textarea#dataInput {
+textarea#card_dataInput, textarea#item_dataInput {
     background: #ffffff;
     display: block;
     width: 100%;
+    height: 13rem;
     margin: 0.5rem;
     padding: 0.5rem;
     border: 0.1rem solid #000000;
@@ -181,7 +229,8 @@ textarea#dataInput {
 
 /* 保存関係ボタン */  
 
-#storageReset, #storageImport, #storageExport, #compressionStorageImport, #compressionStorageExport {
+#card_storageReset, #card_storageImport, #card_storageExport, #card_compressionStorageImport, #card_compressionStorageExport,
+#item_storageReset, #item_storageImport, #item_storageExport, #item_compressionStorageImport, #item_compressionStorageExport {
     background: #ffffff;
     margin: 0.5rem;
     padding: 0.5rem;
@@ -215,7 +264,7 @@ textarea#dataInput {
 #content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
 }
 
 #content>div.item, #content>div.card {
@@ -225,6 +274,7 @@ textarea#dataInput {
     margin: 0.5rem;
     padding: 0.5rem;
     width: 30rem;
+    max-width: 48%;
     text-align: center;
     border: 0.1rem solid #000000;
 }
@@ -234,19 +284,19 @@ textarea#dataInput {
 }
 
 #content div.brandDiv {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     text-align: right;
     font-size: 1.2rem;
 }
 
 #content div.musicDiv {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     text-align: left;
     font-size: 1.2rem;
 }
 
 #content div.categoryDiv {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     text-align: left;
     font-size: 1.2rem;
 }
@@ -288,7 +338,6 @@ textarea#dataInput {
 
 #content .numBoxDiv {
     position: relative;
-    overflow: hidden;
     font-size: 2rem;
     margin: auto;
     margin-top: 2rem;
@@ -306,6 +355,16 @@ textarea#dataInput {
 #content .numBoxDiv>.haveRibbon {
     display: none;
     position: absolute;
+    overflow: hidden;
+    width: 4.3rem;
+    height: 4.3rem;
+    right: 0;
+    top: 0;
+    z-index: 999;
+}
+
+#content .numBoxDiv>.haveRibbon>.haveRibbonContent {
+    position: absolute;
     padding: 0.5rem 0;
     text-align: center;
     background: #000000;
@@ -319,6 +378,7 @@ textarea#dataInput {
 }
 
 #content .numBoxDiv.have>.haveRibbon {
+    overflow: hidden;
     display: inline-block;
 }
 
@@ -337,6 +397,13 @@ textarea#dataInput {
     width: 10rem;
 }
 
+#content .reDetailDiv {
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 4.5rem;
+}
+
 #content .partIconDiv {
     position: absolute;
     left: 0;
@@ -345,11 +412,9 @@ textarea#dataInput {
     width: 3.2rem;
 }
 
-#content .reDetailDiv {
-    font-size: 1.2rem;
-    position: absolute;
-    left: 0;
-    top: 4.5rem;
+#content .partIconDiv>span {
+    height: 3.2rem;
+    width: 3.2rem;
 }
 
 #content .part-one-piece>.partIconDiv {
