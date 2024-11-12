@@ -418,11 +418,14 @@ textarea#card_dataInput, textarea#item_dataInput {
     height: 3.2rem;
     width: 3.2rem;
     background-size: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: lighten;
 }
 
 #content .partIconDiv>span {
     height: 3.2rem;
     width: 3.2rem;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 #content .part-one-piece>.partIconDiv {
