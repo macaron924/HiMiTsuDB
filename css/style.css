@@ -262,9 +262,17 @@ textarea#card_dataInput, textarea#item_dataInput {
 /* 一覧部分 */
 
 #content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    align-items: start;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+@media (max-width: 760px) {
+    #content {
+        grid-template-columns: 48% 48%;
+    }
 }
 
 #content>div.item, #content>div.card {
@@ -273,8 +281,8 @@ textarea#card_dataInput, textarea#item_dataInput {
     overflow: hidden;
     margin: 0.5rem;
     padding: 0.5rem;
-    width: 30rem;
-    max-width: 48%;
+    width: calc(100% - 1rem);
+    max-width: 30rem;
     text-align: center;
     border: 0.1rem solid #000000;
 }
@@ -342,7 +350,8 @@ textarea#card_dataInput, textarea#item_dataInput {
     margin: auto;
     margin-top: 2rem;
     margin-bottom: 4rem;
-    width: 20rem;
+    width: calc(100% - 1rem);
+    max-width: 20rem;
     padding: 0;
     padding-left: 3.2rem;
     border: 0.1rem solid #000000;
@@ -390,11 +399,9 @@ textarea#card_dataInput, textarea#item_dataInput {
 #content .numBoxDiv>input {
     display: inline-block;
     text-align: center;
-}
-
-#content .numBoxDiv>input {
     padding: 1rem;
-    width: 10rem;
+    width: calc(100% - 6.4rem);
+    min-width: 5rem;
 }
 
 #content .reDetailDiv {
