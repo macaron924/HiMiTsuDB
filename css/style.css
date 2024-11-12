@@ -417,6 +417,7 @@ textarea#card_dataInput, textarea#item_dataInput {
     top: 12.5%;
     height: 3.2rem;
     width: 3.2rem;
+    background-size: 100%;
 }
 
 #content .partIconDiv>span {
