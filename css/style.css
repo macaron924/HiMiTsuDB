@@ -149,20 +149,52 @@ main a:hover {
 /* メニュー */
 
 #menu-button-box {
-    display: block;
+    display: grid;
+    place-content: center;
+    place-items: center;
     text-align: center;
+    grid-template-columns: 30% 30%;
 }
 
 .menu-button-content {
     border: 0.5rem solid #cccccc;
     box-sizing: border-box;
     text-align: center;
-    margin: 1%;
-    padding: 1%;
     display: inline-block;
-    aspect-ratio: 1 / 1;
-    width: 32%;
     background: #ffffff;
+}
+
+.menu-button-content#link-card, .menu-button-content#link-item {
+    margin: 5%;
+    padding: 5%;
+    width: 90%;
+    aspect-ratio: 1 / 1;
+}
+
+.menu-button-content#link-setting {
+    margin: 2.5%;
+    padding: 2.5%;
+    width: 95%;
+	grid-column: 1 / 3;
+}
+
+@media (max-width: 500px) {
+    #menu-button-box {
+        grid-template-columns: 60%;
+    }
+
+    .menu-button-content#link-card, .menu-button-content#link-item {
+        margin: 5%;
+        padding: 5%;
+        width: 90%;
+    }
+
+    .menu-button-content#link-setting {
+        margin: 5%;
+        padding: 5%;
+        width: 90%;
+        grid-column: 1;
+    }
 }
 
 .menu-button-content>a {
@@ -180,23 +212,6 @@ main a:hover {
 
 .menu-button-content>a>span:hover {
     color: darkgoldenrod;
-}
-
-#menu-button-box-2 {
-    display: block;
-    text-align: center;
-}
-
-.menu-button-content-2 {
-    border: 0.5rem solid #cccccc;
-    text-align: center;
-    margin: 1%;
-    padding: 1%;
-    width: calc(66% + 0.5rem);
-    display: inline-block;
-    background: #ffffff;
-    font-size: 2rem;
-    font-weight: bold;
 }
 
 
