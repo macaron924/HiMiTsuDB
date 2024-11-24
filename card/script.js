@@ -52,25 +52,10 @@ fetch("./../data/card_data.json")
             ribbon2.className = "ribbon ribbon2";
             div.appendChild(ribbon2);
 
-            const brandDiv = document.createElement("div");
-            brandDiv.className = "brandDiv";
-            brandDiv.innerText = obj.brandName;
-            div.appendChild(brandDiv);
-
-            const charaDiv = document.createElement("div");
-            charaDiv.innerText = obj.character;
-            div.appendChild(charaDiv);
-
-            const nameDiv = document.createElement("div");
-            nameDiv.innerText = obj.cardName;
-            div.appendChild(nameDiv);
-
-            const musicDiv = document.createElement("div");
-            musicDiv.className = "musicDiv";
-            musicDiv.innerText = `💿 ${obj.music}`;
-            div.appendChild(musicDiv);
+            const itemID = obj.id;
 
             let category1str = "";
+            let notPromotion = false;
             switch (category1) {
                 case "special":
                     category1str = "スペシャル";
@@ -83,13 +68,42 @@ fetch("./../data/card_data.json")
                     break;
                 default:
                     category1str = `${category1}だん`;
+                    notPromotion = true;
             }
+
+            const idDiv = document.createElement("div");
+            idDiv.className = "idDiv";
+            if (notPromotion == true) {
+                idDiv.innerText = itemID;
+            } else {
+                idDiv.innerText = "";
+            }
+            div.appendChild(idDiv);
+
+            const brandDiv = document.createElement("div");
+            brandDiv.className = "brandDiv";
+            brandDiv.innerText = obj.brandName;
+            div.appendChild(brandDiv);
+
+            const charaDiv = document.createElement("div");
+            charaDiv.className = "charaDiv";
+            charaDiv.innerText = obj.character;
+            div.appendChild(charaDiv);
+
+            const nameDiv = document.createElement("div");
+            nameDiv.className = "nameDiv";
+            nameDiv.innerText = obj.cardName;
+            div.appendChild(nameDiv);
+
+            const musicDiv = document.createElement("div");
+            musicDiv.className = "musicDiv";
+            musicDiv.innerText = `💿 ${obj.music}`;
+            div.appendChild(musicDiv);
+
             const categoryDiv = document.createElement("div");
             categoryDiv.className = "categoryDiv";
             categoryDiv.innerText = `${category1str} / ${category2}`;
             div.appendChild(categoryDiv);
-
-            const itemID = obj.id;
 
             const numBoxDiv = document.createElement("div");
             numBoxDiv.className = "numBoxDiv";

@@ -228,10 +228,20 @@ main a:hover {
     vertical-align: bottom;
 }
 
+.setting-content select {
+    -webkit-appearance: auto;
+    appearance: auto;
+    background: #ffffff;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 0.1rem solid #000000;
+}
+
 
 /* データ入出力エリア */
 
-textarea#card_dataInput, textarea#item_dataInput {
+textarea#card_dataInput, textarea#card_compressionDataInput,
+textarea#item_dataInput, textarea#item_compressionDataInput {
     background: #ffffff;
     display: block;
     width: 100%;
@@ -244,12 +254,34 @@ textarea#card_dataInput, textarea#item_dataInput {
 
 /* 保存関係ボタン */  
 
-#card_storageReset, #card_storageImport, #card_storageExport, #card_compressionStorageImport, #card_compressionStorageExport,
-#item_storageReset, #item_storageImport, #item_storageExport, #item_compressionStorageImport, #item_compressionStorageExport {
+#card_storageReset,
+#card_storageImport, #card_storageExport,
+#card_compressionStorageImport, #card_compressionStorageExport,
+#item_storageReset,
+#item_storageImport, #item_storageExport,
+#item_compressionStorageImport, #item_compressionStorageExport {
     background: #ffffff;
     margin: 0.5rem;
     padding: 0.5rem;
     border: 0.1rem solid #000000;
+}
+
+.setting-content.mode_compression #card_dataInput,
+.setting-content.mode_compression #card_storageImport,
+.setting-content.mode_compression #card_storageExport,
+.setting-content.mode_compression #item_dataInput,
+.setting-content.mode_compression #item_storageImport,
+.setting-content.mode_compression #item_storageExport {
+    display: none;
+}
+
+.setting-content.mode_json  #card_compressionDataInput,
+.setting-content.mode_json  #card_compressionStorageImport,
+.setting-content.mode_json  #card_compressionStorageExport,
+.setting-content.mode_json  #item_compressionDataInput,
+.setting-content.mode_json  #item_compressionStorageImport,
+.setting-content.mode_json  #item_compressionStorageExport {
+    display: none;
 }
 
 
@@ -304,6 +336,19 @@ textarea#card_dataInput, textarea#item_dataInput {
 
 #content>div.item.invisible, #content>div.card.invisible {
     display: none;
+}
+
+#content div.idDiv {
+    margin-left: 2rem;
+    text-align: left;
+}
+
+#content div.charaDiv {
+    margin-bottom: 0.5rem;
+}
+
+#content div.nameDiv {
+    height: 4rem;
 }
 
 #content div.brandDiv {

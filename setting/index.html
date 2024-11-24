@@ -31,23 +31,33 @@
                 <p>データは各端末で保存/参照のみに用いられ、外部に送信されることはございません。</p>
             </div>
             <br>
-            <div class="setting-content">
+            <div id="card_management" class="setting-content mode_compression">
                 <h2>アイプリカード管理</h2>
-                <textarea id="card_dataInput" placeholder="card-"></textarea>
-                <button id="card_storageImport">インポート</button>
-                <button id="card_storageExport">エクスポート</button>
+                <textarea id="card_compressionDataInput" placeholder="card-"></textarea>
+                <textarea id="card_dataInput" placeholder="{〇〇〇: 〇, ...}"></textarea>
+                <select id="card_importMode">
+                    <option value="compression">圧縮モード</option>
+                    <option value="json">非圧縮モード(JSON)</option>
+                </select>
                 <button id="card_compressionStorageImport">圧縮インポート</button>
                 <button id="card_compressionStorageExport">圧縮エクスポート</button>
+                <button id="card_storageImport">JSONインポート</button>
+                <button id="card_storageExport">JSONエクスポート</button>
                 <button id="card_storageReset">保存リセット</button>
             </div>
             <br>
-            <div class="setting-content">
+            <div id="item_management" class="setting-content mode_compression">
                 <h2>コーデアイテム管理</h2>
-                <textarea id="item_dataInput" placeholder="item-"></textarea>
-                <button id="item_storageImport">インポート</button>
-                <button id="item_storageExport">エクスポート</button>
+                <textarea id="item_compressionDataInput" placeholder="item-"></textarea>
+                <textarea id="item_dataInput" placeholder="{〇〇〇: 〇, ...}"></textarea>
+                <select id="item_importMode">
+                    <option value="compression">圧縮モード</option>
+                    <option value="json">非圧縮モード(JSON)</option>
+                </select>
                 <button id="item_compressionStorageImport">圧縮インポート</button>
                 <button id="item_compressionStorageExport">圧縮エクスポート</button>
+                <button id="item_storageImport">JSONインポート</button>
+                <button id="item_storageExport">JSONエクスポート</button>
                 <button id="item_storageReset">保存リセット</button>
             </div>
         </main>

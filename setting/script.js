@@ -24,6 +24,20 @@ fetch("./../data/card_data.json")
     .then((r) => r.json())
     .then((res) => {
 
+        document.getElementById("card_importMode").addEventListener("change", function() {
+            let mode = this.value;
+            switch (mode) {
+                case "compression":
+                    document.getElementById("card_management").classList.remove("mode_json");
+                    document.getElementById("card_management").classList.add("mode_compression");
+                    break;
+                case "json":
+                    document.getElementById("card_management").classList.remove("mode_compression");
+                    document.getElementById("card_management").classList.add("mode_json");
+                    break;
+            }
+        })
+
         document.getElementById("card_storageImport").addEventListener("click", function() {
             let inputText = document.getElementById("card_dataInput").value;
             try {
@@ -49,7 +63,7 @@ fetch("./../data/card_data.json")
         })
 
         document.getElementById("card_compressionStorageImport").addEventListener("click", function() {
-            let inputText = document.getElementById("card_dataInput").value;
+            let inputText = document.getElementById("card_compressionDataInput").value;
             if (inputText.startsWith("card-")) {
                 inputText = inputText.replace("card-", "");
             } else {
@@ -90,18 +104,21 @@ fetch("./../data/card_data.json")
             const compressedStream = dataStream.pipeThrough(new CompressionStream(COMPRESS_MODE));
             const reader = new FileReader();
             reader.onloadend = () => {
-                document.getElementById("card_dataInput").value = `card-${reader.result.replace(/data:.*\/.*;base64,/, '')}`;
+                document.getElementById("card_compressionDataInput").value = `card-${reader.result.replace(/data:.*\/.*;base64,/, '')}`;
             };
             new Response(compressedStream).blob()
                 .then(res => reader.readAsDataURL(res));
         })
 
         document.getElementById("card_storageReset").addEventListener("click", function() {
-            localStorage.removeItem("cardHaveList");
-            this.innerText = "保存リセット完了。1秒後にリロードします...";
-            setTimeout(() => {
-                window.location.href = window.location.href;
-            }, 1000);
+            var result = confirm('アイプリカードの所持データをリセットします。本当によろしいですか？');
+            if (result) {
+                localStorage.removeItem("cardHaveList");
+                this.innerText = "保存リセット完了。1秒後にリロードします...";
+                setTimeout(() => {
+                    window.location.href = window.location.href;
+                }, 1000);
+            }
         })
     })
 
@@ -111,6 +128,20 @@ Promise.all([
 ])
     .then((results) => Promise.all([results[0].json(), results[1].json()]))
     .then((res) => {
+
+        document.getElementById("item_importMode").addEventListener("change", function() {
+            let mode = this.value;
+            switch (mode) {
+                case "compression":
+                    document.getElementById("item_management").classList.remove("mode_json");
+                    document.getElementById("item_management").classList.add("mode_compression");
+                    break;
+                case "json":
+                    document.getElementById("item_management").classList.remove("mode_compression");
+                    document.getElementById("item_management").classList.add("mode_json");
+                    break;
+            }
+        })
 
         document.getElementById("item_storageImport").addEventListener("click", function() {
             let inputText = document.getElementById("item_dataInput").value;
@@ -137,7 +168,7 @@ Promise.all([
         })
 
         document.getElementById("item_compressionStorageImport").addEventListener("click", function() {
-            let inputText = document.getElementById("item_dataInput").value;
+            let inputText = document.getElementById("item_compressionDataInput").value;
             if (inputText.startsWith("item-")) {
                 inputText = inputText.replace("item-", "");
             } else {
@@ -178,17 +209,20 @@ Promise.all([
             const compressedStream = dataStream.pipeThrough(new CompressionStream(COMPRESS_MODE));
             const reader = new FileReader();
             reader.onloadend = () => {
-                document.getElementById("item_dataInput").value = `item-${reader.result.replace(/data:.*\/.*;base64,/, '')}`;
+                document.getElementById("item_compressionDataInput").value = `item-${reader.result.replace(/data:.*\/.*;base64,/, '')}`;
             };
             new Response(compressedStream).blob()
                 .then(res => reader.readAsDataURL(res));
         })
 
         document.getElementById("item_storageReset").addEventListener("click", function() {
-            localStorage.removeItem("itemHaveList");
-            this.innerText = "保存リセット完了。1秒後にリロードします...";
-            setTimeout(() => {
-                window.location.href = window.location.href;
-            }, 1000);
+            var result = confirm('コーデアイテムの所持データをリセットします。本当によろしいですか？');
+            if (result) {
+                localStorage.removeItem("itemHaveList");
+                this.innerText = "保存リセット完了。1秒後にリロードします...";
+                setTimeout(() => {
+                    window.location.href = window.location.href;
+                }, 1000);
+            }
         })
     })
