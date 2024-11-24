@@ -50,6 +50,7 @@ Promise.all([
             div.appendChild(brandDiv);
 
             const nameDiv = document.createElement("div");
+            nameDiv.className = "nameDiv";
             nameDiv.innerText = obj.coordinateName;
             div.appendChild(nameDiv);
 
