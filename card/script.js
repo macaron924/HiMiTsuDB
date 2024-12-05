@@ -73,7 +73,7 @@ fetch("./../data/card_data.json")
 
             const idDiv = document.createElement("div");
             idDiv.className = "idDiv";
-            if (notPromotion == true) {
+            if (notPromotion === true) {
                 idDiv.innerText = itemID;
             } else {
                 idDiv.innerText = "";
@@ -131,7 +131,7 @@ fetch("./../data/card_data.json")
                 inp.value = newValue;
 
                 const id = inp.id;
-                if (newValue == 0){
+                if (newValue === 0){
                     delete haveList[id];
                     inp.classList.remove("have");
                 }else {
@@ -148,11 +148,11 @@ fetch("./../data/card_data.json")
                 const inp = this.parentElement.querySelector("input");
                 const value = inp.value;
 
-                const newValue = value == "" ? 1 : parseInt(value) + 1;
+                const newValue = value === "" ? 1 : parseInt(value) + 1;
                 inp.value = newValue;
 
                 const id = inp.id;
-                if (newValue == 0){
+                if (newValue === 0){
                     delete haveList[id];
                     inp.classList.remove("have");
                 }else {
@@ -170,7 +170,7 @@ fetch("./../data/card_data.json")
                 const newValue = inp.value;
 
                 const id = inp.id;
-                if (newValue == 0){
+                if (newValue === 0){
                     delete haveList[id];
                     inp.classList.remove("have");
                 }else {
@@ -179,7 +179,7 @@ fetch("./../data/card_data.json")
                 }
                 localStorage.setItem("cardHaveList", JSON.stringify(haveList));
             })
-            if (haveList[itemID] != undefined) {
+            if (haveList[itemID] !== undefined) {
                 numBox.value = haveList[itemID];
                 numBox.classList.add("have");
                 numBoxDiv.classList.add("have")
@@ -217,7 +217,7 @@ fetch("./../data/card_data.json")
             categoryButton.innerHTML = category1str;
             categoryButton.addEventListener("click", function() {
                 let value = this.value;
-                if (activeSelections.length == 0) {
+                if (activeSelections.length === 0) {
                     document.querySelectorAll(".card").forEach(element => {
                         element.classList.add("invisible");
                     })
@@ -236,7 +236,7 @@ fetch("./../data/card_data.json")
                         element.classList.remove("invisible");
                     })
                 }
-                if (activeSelections.length == 0) {
+                if (activeSelections.length === 0) {
                     document.querySelectorAll(".card").forEach(element => {
                         element.classList.remove("invisible");
                     })

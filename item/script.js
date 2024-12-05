@@ -76,7 +76,7 @@ Promise.all([
             PART_LIST.forEach((part) => {
                 const itemIdArray = obj[part].split(" ");
                 const itemID = itemIdArray[0];
-                if (itemID == "") return;
+                if (itemID === "") return;
 
                 let reStr = "";
                 if (itemIdArray.length > 1) reStr = " re";
@@ -90,7 +90,7 @@ Promise.all([
                     let originCategory1 = "";
                     let originCategory2 = "";
                     itemRes.forEach((item) => {
-                        if (item.imageId == itemID) {
+                        if (item.imageId === itemID) {
                             originCategory1 = item.category1;
                             originCategory2 = item.category2
                             return;
@@ -134,7 +134,7 @@ Promise.all([
                     inp.value = newValue;
     
                     const id = inp.getAttribute("itemID");
-                    if (newValue == 0){
+                    if (newValue === 0){
                         delete haveList[id];
                         inp.classList.remove("have");
                     }else {
@@ -157,11 +157,11 @@ Promise.all([
                     const inp = this.parentElement.querySelector("input");
                     const value = inp.value;
     
-                    const newValue = value == "" ? 1 : parseInt(value) + 1;
+                    const newValue = value === "" ? 1 : parseInt(value) + 1;
                     inp.value = newValue;
     
                     const id = inp.getAttribute("itemID");
-                    if (newValue == 0){
+                    if (newValue === 0){
                         delete haveList[id];
                         inp.classList.remove("have");
                     }else {
@@ -185,7 +185,7 @@ Promise.all([
                     const newValue = inp.value;
 
                     const id = inp.getAttribute("itemID");
-                    if (newValue == 0){
+                    if (newValue === 0){
                         delete haveList[id];
                         inp.classList.remove("have");
                     }else {
@@ -200,7 +200,7 @@ Promise.all([
                         })
                     }
                 })
-                if (haveList[numBox.getAttribute("itemID")] != undefined) {
+                if (haveList[numBox.getAttribute("itemID")] !== undefined) {
                     numBox.value = haveList[numBox.getAttribute("itemID")];
                     numBox.classList.add("have");
                     numBoxDiv.classList.add("have")
@@ -217,6 +217,8 @@ Promise.all([
 
             //div.innerText = `${obj.brandName} / ${obj.coordinateName} / ${obj.part}`;
             document.getElementById("content").appendChild(div);
+
+            obj.div = div;
         })
         
         categoryList.sort();
@@ -240,7 +242,7 @@ Promise.all([
             categoryButton.innerHTML = category1str;
             categoryButton.addEventListener("click", function() {
                 let value = this.value;
-                if (activeSelections.length == 0) {
+                if (activeSelections.length === 0) {
                     document.querySelectorAll(".item").forEach(element => {
                         element.classList.add("invisible");
                     })
@@ -251,15 +253,14 @@ Promise.all([
                     document.querySelectorAll(`.item.category-${value}`).forEach(element => {
                         element.classList.add("invisible");
                     })
-                }
-                else {
+                } else {
                     this.classList.add("active");
                     activeSelections.push(value);
                     document.querySelectorAll(`.item.category-${value}`).forEach(element => {
                         element.classList.remove("invisible");
                     })
                 }
-                if (activeSelections.length == 0) {
+                if (activeSelections.length === 0) {
                     document.querySelectorAll(".item").forEach(element => {
                         element.classList.remove("invisible");
                     })
@@ -267,6 +268,45 @@ Promise.all([
             })
             document.getElementById("category-select").appendChild(categoryButton);
         });
+
+        let brandSelections = [];
+        document.querySelectorAll("#brand-select>button").forEach((button) => {
+            button.addEventListener("click", function() {
+                let value = this.value;
+                if(this.classList.contains("active")){
+                    this.classList.remove("active");
+                    brandSelections = brandSelections.filter(i => (i !== value));
+                    brandFilter(brandSelections);
+                } else {
+                    this.classList.add("active");
+                    brandSelections.push(value);
+                    brandFilter(brandSelections);
+                }
+            })
+        })
+        /*
+        coordinateRes.forEach((obj) => {
+            if (brandSelections.includes(obj.brandName)) {
+                obj.div.style.display = "block";
+            } else {
+                obj.div.style.display = "none";
+            }
+        })*/
+        function brandFilter(brandSelections) {
+            if (brandSelections.length === 0) {
+                coordinateRes.forEach((obj) => {
+                    obj.div.style.display = "block";
+                })
+            } else {
+                coordinateRes.forEach((obj) => {
+                    if (brandSelections.includes(obj.brandName)) {
+                        obj.div.style.display = "block";
+                    } else {
+                        obj.div.style.display = "none";
+                    }
+                })
+            }
+        }
     })
 
 /*
@@ -296,7 +336,7 @@ fetch("./../data/item_data.json")
             }
 
             let reStr = "";
-            if (obj.re == true) {
+            if (obj.re === true) {
                 div.classList.add("re");
                 reStr = " ※再録"
             }
@@ -357,7 +397,7 @@ fetch("./../data/item_data.json")
                 inp.value = newValue;
 
                 const id = inp.id;
-                if (newValue == 0){
+                if (newValue === 0){
                     delete haveList[id];
                     inp.classList.remove("have");
                 }else {
@@ -373,11 +413,11 @@ fetch("./../data/item_data.json")
                 const inp = this.parentElement.querySelector("input");
                 const value = inp.value;
 
-                const newValue = value == "" ? 1 : parseInt(value) + 1;
+                const newValue = value === "" ? 1 : parseInt(value) + 1;
                 inp.value = newValue;
 
                 const id = inp.id;
-                if (newValue == 0){
+                if (newValue === 0){
                     delete haveList[id];
                     inp.classList.remove("have");
                 }else {
@@ -389,7 +429,7 @@ fetch("./../data/item_data.json")
             const numBox = document.createElement("input");
             numBox.type = "number";
             numBox.id = itemID;
-            if (haveList[itemID] != undefined) {
+            if (haveList[itemID] !== undefined) {
                 numBox.value = haveList[itemID];
                 numBox.classList.add("have");
             }
@@ -423,7 +463,7 @@ fetch("./../data/item_data.json")
             categoryButton.innerHTML = category1str;
             categoryButton.addEventListener("click", function() {
                 let value = this.value;
-                if (activeSelections.length == 0) {
+                if (activeSelections.length === 0) {
                     document.querySelectorAll(".item").forEach(element => {
                         element.classList.add("invisible");
                     })
@@ -442,7 +482,7 @@ fetch("./../data/item_data.json")
                         element.classList.remove("invisible");
                     })
                 }
-                if (activeSelections.length == 0) {
+                if (activeSelections.length === 0) {
                     document.querySelectorAll(".item").forEach(element => {
                         element.classList.remove("invisible");
                     })

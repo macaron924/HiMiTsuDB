@@ -287,13 +287,13 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
 
 /* カテゴリ選択 */
 
-#category-select {
+#category-select, #brand-select {
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
 }
 
-#category-select>button {
+#category-select>button, #brand-select>button {
     background: #ffffff;
     margin: 0.5rem;
     padding: 0.5rem;
@@ -301,7 +301,7 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
     border: 0.1rem solid #000000;
 }
 
-#category-select>button.active {
+#category-select>button.active, #brand-select>button.active {
     background: yellow;
 }
 
