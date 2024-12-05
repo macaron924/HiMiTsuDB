@@ -250,20 +250,11 @@ Promise.all([
                 if(this.classList.contains("active")){
                     this.classList.remove("active");
                     activeSelections = activeSelections.filter(i => (i !== value));
-                    document.querySelectorAll(`.item.category-${value}`).forEach(element => {
-                        element.classList.add("invisible");
-                    })
+                    filter();
                 } else {
                     this.classList.add("active");
                     activeSelections.push(value);
-                    document.querySelectorAll(`.item.category-${value}`).forEach(element => {
-                        element.classList.remove("invisible");
-                    })
-                }
-                if (activeSelections.length === 0) {
-                    document.querySelectorAll(".item").forEach(element => {
-                        element.classList.remove("invisible");
-                    })
+                    filter();
                 }
             })
             document.getElementById("category-select").appendChild(categoryButton);
@@ -276,11 +267,11 @@ Promise.all([
                 if(this.classList.contains("active")){
                     this.classList.remove("active");
                     brandSelections = brandSelections.filter(i => (i !== value));
-                    brandFilter(brandSelections);
+                    filter();
                 } else {
                     this.classList.add("active");
                     brandSelections.push(value);
-                    brandFilter(brandSelections);
+                    filter();
                 }
             })
         })
@@ -292,20 +283,40 @@ Promise.all([
                 obj.div.style.display = "none";
             }
         })*/
-        function brandFilter(brandSelections) {
-            if (brandSelections.length === 0) {
-                coordinateRes.forEach((obj) => {
-                    obj.div.style.display = "block";
-                })
+        function isMatchCategoryFilter(category, activeSelections) {
+            if (activeSelections.length === 0) {
+                return true;
             } else {
-                coordinateRes.forEach((obj) => {
-                    if (brandSelections.includes(obj.brandName)) {
-                        obj.div.style.display = "block";
-                    } else {
-                        obj.div.style.display = "none";
-                    }
-                })
+                if (activeSelections.includes(category)) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
+        }
+        function isMatchBrandFilter(brand, brandSelections) {
+            if (brandSelections.length === 0) {
+                return true;
+            } else {
+                if (brandSelections.includes(brand)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        function filter() {
+            coordinateRes.forEach((obj) => {
+                if (isMatchCategoryFilter(obj.category1, activeSelections) === false) {
+                    obj.div.style.display = "none";
+                    return;
+                }
+                if (isMatchBrandFilter(obj.brandName, brandSelections) === false) {
+                    obj.div.style.display = "none";
+                    return;
+                }
+                obj.div.style.display = "block";
+            })
         }
     })
 
