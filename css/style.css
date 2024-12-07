@@ -331,7 +331,8 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
     width: calc(100% - 1rem);
     max-width: 30rem;
     text-align: center;
-    border: 0.1rem solid #000000;
+    border: 0.23rem solid;
+    border-image: linear-gradient(90deg, #fe9bf2, #66d9fe) 1;
 }
 
 #content>div.item.invisible, #content>div.card.invisible {
