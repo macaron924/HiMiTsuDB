@@ -104,6 +104,23 @@ header h1 {
     margin: 1rem;
 }
 
+header #menu-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+header #menu-icon span {
+    margin: 0.5rem 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    color: darkorange;
+}
+
+header #menu-icon span:hover {
+    color: darkgoldenrod;
+}
+
 
 /* フッターエリア */
 

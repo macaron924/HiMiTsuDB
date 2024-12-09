@@ -41,7 +41,6 @@ fetch("./../data/card_data.json")
 
             let category1 = obj.category1;
             let category2 = obj.category2;
-            div.classList.add(`category-${category1}`);
             if(!categoryList.includes(category1)) categoryList.push(category1);
 
             const ribbon1 = document.createElement("div");
@@ -192,8 +191,9 @@ fetch("./../data/card_data.json")
             numBoxDiv.appendChild(incrementButton);
             div.appendChild(numBoxDiv);
 
-            //div.innerText = `${obj.brandName} / ${obj.character} / ${obj.cardName}`;
             document.getElementById("content").appendChild(div);
+
+            obj.div = div;
         })
 
         categoryList.sort();
@@ -217,31 +217,68 @@ fetch("./../data/card_data.json")
             categoryButton.innerHTML = category1str;
             categoryButton.addEventListener("click", function() {
                 let value = this.value;
-                if (activeSelections.length === 0) {
-                    document.querySelectorAll(".card").forEach(element => {
-                        element.classList.add("invisible");
-                    })
-                }
                 if(this.classList.contains("active")){
                     this.classList.remove("active");
                     activeSelections = activeSelections.filter(i => (i !== value));
-                    document.querySelectorAll(`.card.category-${value}`).forEach(element => {
-                        element.classList.add("invisible");
-                    })
-                }
-                else {
+                    filter();
+                } else {
                     this.classList.add("active");
                     activeSelections.push(value);
-                    document.querySelectorAll(`.card.category-${value}`).forEach(element => {
-                        element.classList.remove("invisible");
-                    })
-                }
-                if (activeSelections.length === 0) {
-                    document.querySelectorAll(".card").forEach(element => {
-                        element.classList.remove("invisible");
-                    })
+                    filter();
                 }
             })
             document.getElementById("category-select").appendChild(categoryButton);
         });
+
+        let brandSelections = [];
+        document.querySelectorAll("#brand-select>button").forEach((button) => {
+            button.addEventListener("click", function() {
+                let value = this.value;
+                if(this.classList.contains("active")){
+                    this.classList.remove("active");
+                    brandSelections = brandSelections.filter(i => (i !== value));
+                    filter();
+                } else {
+                    this.classList.add("active");
+                    brandSelections.push(value);
+                    filter();
+                }
+            })
+        })
+        
+        function isMatchCategoryFilter(category, activeSelections) {
+            if (activeSelections.length === 0) {
+                return true;
+            } else {
+                if (activeSelections.includes(category)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        function isMatchBrandFilter(brand, brandSelections) {
+            if (brandSelections.length === 0) {
+                return true;
+            } else {
+                if (brandSelections.includes(brand)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        function filter() {
+            res.forEach((obj) => {
+                if (isMatchCategoryFilter(obj.category1, activeSelections) === false) {
+                    obj.div.style.display = "none";
+                    return;
+                }
+                if (isMatchBrandFilter(obj.brandName, brandSelections) === false) {
+                    obj.div.style.display = "none";
+                    return;
+                }
+                obj.div.style.display = "block";
+            })
+        }
     })
