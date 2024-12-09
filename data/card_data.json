@@ -301,6 +301,7 @@
     {"id": "AP5-058", "character": "アイリ", "cardName": "セーラーカジュアルオレンジ", "brandName": "ベアベアベア", "type": "ダンス", "music": "ネバギバラバー", "category1": "5", "category2": "☆☆", "chance": true},
     {"id": "AP5-059", "character": "ひまり", "cardName": "チューリップブルー", "brandName": "ミラクルムーン", "type": "うた", "music": "レッツ！アイプリ（ひまり）", "category1": "5", "category2": "☆☆", "chance": true},
     {"id": "AP5-060", "character": "つむぎ", "cardName": "チューリップグリーン", "brandName": "レインボーキャンディ", "type": "ファッション", "music": "つむぎのひみつマイソング♪", "category1": "5", "category2": "☆☆", "chance": true},
+    {"id": "P-063", "character": "みつき", "cardName": "おしょうがつミント", "brandName": "ミラクルムーン", "type": "ダンス", "music": "We're The World", "category1": "special", "category2": "", "chance": true},
     {"id": "P-069", "character": "みつき", "cardName": "おとぎばなしワンダーランドピンク", "brandName": "クリスタルバース", "type": "ファッション", "music": "ムテキDUOエナジー", "category1": "special", "category2": "", "chance": true},
     {"id": "P-068", "character": "つむぎ（プリンセスver.）", "cardName": "おとぎばなししらゆきひめホワイト", "brandName": "クリスタルバース", "type": "ダンス", "music": "きらめきのうた", "category1": "special", "category2": "", "chance": true},
     {"id": "P-062", "character": "つむぎ", "cardName": "マジシャンキャットイエロー", "brandName": "ミラクルムーン", "type": "ファッション", "music": "We're The World", "category1": "special", "category2": "", "chance": false},
