@@ -467,6 +467,7 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
 #content .numBoxDiv.have>.haveRibbon {
     overflow: hidden;
     display: inline-block;
+    pointer-events: none;
 }
 
 .increment, .decrement {
