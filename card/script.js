@@ -1,5 +1,11 @@
 let categoryList = [];
-let activeSelections = [];
+
+let filterSettings = {
+    character: [],
+    brand: [],
+    music: [],
+    category: []
+}
 
 let haveList = localStorage.getItem("cardHaveList");
 haveList = haveList ? JSON.parse(haveList) : {};
@@ -194,6 +200,7 @@ fetch("./../data/card_data.json")
             document.getElementById("content").appendChild(div);
 
             obj.div = div;
+            obj.connectedCategory = `${category1}/${category2}`;
         })
 
         categoryList.sort();
@@ -219,49 +226,73 @@ fetch("./../data/card_data.json")
                 let value = this.value;
                 if(this.classList.contains("active")){
                     this.classList.remove("active");
-                    activeSelections = activeSelections.filter(i => (i !== value));
+                    filterSettings.category = filterSettings.category.filter(i => (i !== value));
                     filter();
                 } else {
                     this.classList.add("active");
-                    activeSelections.push(value);
+                    filterSettings.category.push(value);
                     filter();
                 }
             })
             document.getElementById("category-select").appendChild(categoryButton);
         });
 
-        let brandSelections = [];
         document.querySelectorAll("#brand-select>button").forEach((button) => {
             button.addEventListener("click", function() {
                 let value = this.value;
                 if(this.classList.contains("active")){
                     this.classList.remove("active");
-                    brandSelections = brandSelections.filter(i => (i !== value));
+                    filterSettings.brand = filterSettings.brand.filter(i => (i !== value));
                     filter();
                 } else {
                     this.classList.add("active");
-                    brandSelections.push(value);
+                    filterSettings.brand.push(value);
+                    filter();
+                }
+            })
+        })
+        document.querySelectorAll("#character-select>button").forEach((button) => {
+            button.addEventListener("click", function() {
+                let value = this.value;
+                if(this.classList.contains("active")){
+                    this.classList.remove("active");
+                    filterSettings.character = filterSettings.character.filter(i => (i !== value));
+                    filter();
+                } else {
+                    this.classList.add("active");
+                    filterSettings.character.push(value);
                     filter();
                 }
             })
         })
         
-        function isMatchCategoryFilter(category, activeSelections) {
-            if (activeSelections.length === 0) {
+        function isMatchCategoryFilter(category) {
+            if (filterSettings.category.length === 0) {
                 return true;
             } else {
-                if (activeSelections.includes(category)) {
+                if (filterSettings.category.includes(category)) {
                     return true;
                 } else {
                     return false;
                 }
             }
         }
-        function isMatchBrandFilter(brand, brandSelections) {
-            if (brandSelections.length === 0) {
+        function isMatchBrandFilter(brand) {
+            if (filterSettings.brand.length === 0) {
                 return true;
             } else {
-                if (brandSelections.includes(brand)) {
+                if (filterSettings.brand.includes(brand)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        function isMatchCharacterFilter(character) {
+            if (filterSettings.character.length === 0) {
+                return true;
+            } else {
+                if (filterSettings.character.includes(character)) {
                     return true;
                 } else {
                     return false;
@@ -270,11 +301,15 @@ fetch("./../data/card_data.json")
         }
         function filter() {
             res.forEach((obj) => {
-                if (isMatchCategoryFilter(obj.category1, activeSelections) === false) {
+                if (isMatchCategoryFilter(obj.category1) === false) {
                     obj.div.style.display = "none";
                     return;
                 }
-                if (isMatchBrandFilter(obj.brandName, brandSelections) === false) {
+                if (isMatchBrandFilter(obj.brandName) === false) {
+                    obj.div.style.display = "none";
+                    return;
+                }
+                if (isMatchCharacterFilter(obj.character) === false) {
                     obj.div.style.display = "none";
                     return;
                 }
