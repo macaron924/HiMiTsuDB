@@ -311,6 +311,20 @@ fetch("./../data/card_data.json")
             document.getElementById("category-select").appendChild(categoryBox);
         });
 
+        document.querySelectorAll("#music-select>button").forEach((button) => {
+            button.addEventListener("click", function() {
+                let value = this.value;
+                if (this.classList.contains("active")){
+                    this.classList.remove("active");
+                    filterSettings.music = filterSettings.music.filter(i => (i !== value));
+                    filter();
+                } else {
+                    this.classList.add("active");
+                    filterSettings.music.push(value);
+                    filter();
+                }
+            });
+        });
         document.querySelectorAll("#brand-select>button").forEach((button) => {
             button.addEventListener("click", function() {
                 let value = this.value;
@@ -351,6 +365,17 @@ fetch("./../data/card_data.json")
                 }
             }
         }
+        function isMatchMusicFilter(music) {
+            if (filterSettings.music.length === 0) {
+                return true;
+            } else {
+                if (filterSettings.music.includes(music)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
         function isMatchBrandFilter(brand) {
             if (filterSettings.brand.length === 0) {
                 return true;
@@ -377,6 +402,10 @@ fetch("./../data/card_data.json")
             let count = 0;
             res.forEach((obj) => {
                 if (isMatchCategoryFilter(obj.connectedCategory) === false) {
+                    obj.div.style.display = "none";
+                    return;
+                }
+                if (isMatchMusicFilter(obj.music) === false) {
                     obj.div.style.display = "none";
                     return;
                 }
