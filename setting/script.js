@@ -16,7 +16,7 @@ function sortHaveJson(json) {
     let newJson = {};
     keyList.forEach((key) => {
         newJson[key] = json[key];
-    })
+    });
     return newJson;
 }
 
@@ -36,12 +36,12 @@ fetch("./../data/card_data.json")
                     document.getElementById("card_management").classList.add("mode_json");
                     break;
             }
-        })
+        });
 
         document.getElementById("card_storageImport").addEventListener("click", function() {
             let inputText = document.getElementById("card_dataInput").value;
             try {
-                if(isObject(JSON.parse(inputText)) === false) throw "IsNotValidObjectError";
+                if (isObject(JSON.parse(inputText)) === false) throw "IsNotValidObjectError";
             } catch(error) {
                 this.innerText = "インポート失敗。";
                 setTimeout(() => {
@@ -55,12 +55,12 @@ fetch("./../data/card_data.json")
             setTimeout(() => {
                 window.location.href = window.location.href;
             }, 1000);
-        })
+        });
 
         document.getElementById("card_storageExport").addEventListener("click", function() {
             let data = sortHaveJson(cardHaveList);
             document.getElementById("card_dataInput").value = JSON.stringify(data);
-        })
+        });
 
         document.getElementById("card_compressionStorageImport").addEventListener("click", function() {
             let inputText = document.getElementById("card_compressionDataInput").value;
@@ -80,7 +80,7 @@ fetch("./../data/card_data.json")
                     new Response(decompressedStream).text()
                         .then(decompressedText => {
                             try {
-                                if(isObject(JSON.parse(decompressedText)) === false) throw "IsNotValidObjectError";
+                                if (isObject(JSON.parse(decompressedText)) === false) throw "IsNotValidObjectError";
                             } catch(error) {
                                 this.innerText = "インポート失敗。";
                                 setTimeout(() => {
@@ -94,9 +94,9 @@ fetch("./../data/card_data.json")
                             setTimeout(() => {
                                 window.location.href = window.location.href;
                             }, 1000);
-                        })
-                })
-        })
+                        });
+                });
+        });
 
         document.getElementById("card_compressionStorageExport").addEventListener("click", function() {
             let data = JSON.stringify(sortHaveJson(cardHaveList));
@@ -108,7 +108,7 @@ fetch("./../data/card_data.json")
             };
             new Response(compressedStream).blob()
                 .then(res => reader.readAsDataURL(res));
-        })
+        });
 
         document.getElementById("card_storageReset").addEventListener("click", function() {
             var result = confirm('アイプリカードの所持データをリセットします。本当によろしいですか？');
@@ -119,8 +119,8 @@ fetch("./../data/card_data.json")
                     window.location.href = window.location.href;
                 }, 1000);
             }
-        })
-    })
+        });
+    });
 
 Promise.all([
     fetch("./../data/item_data.json"),
@@ -141,12 +141,12 @@ Promise.all([
                     document.getElementById("item_management").classList.add("mode_json");
                     break;
             }
-        })
+        });
 
         document.getElementById("item_storageImport").addEventListener("click", function() {
             let inputText = document.getElementById("item_dataInput").value;
             try {
-                if(isObject(JSON.parse(inputText)) === false) throw "IsNotValidObjectError";
+                if (isObject(JSON.parse(inputText)) === false) throw "IsNotValidObjectError";
             } catch(error) {
                 this.innerText = "インポート失敗。";
                 setTimeout(() => {
@@ -160,12 +160,12 @@ Promise.all([
             setTimeout(() => {
                 window.location.href = window.location.href;
             }, 1000);
-        })
+        });
 
         document.getElementById("item_storageExport").addEventListener("click", function() {
             let data = sortHaveJson(itemHaveList);
             document.getElementById("item_dataInput").value = JSON.stringify(data);
-        })
+        });
 
         document.getElementById("item_compressionStorageImport").addEventListener("click", function() {
             let inputText = document.getElementById("item_compressionDataInput").value;
@@ -185,7 +185,7 @@ Promise.all([
                     new Response(decompressedStream).text()
                         .then(decompressedText => {
                             try {
-                                if(isObject(JSON.parse(decompressedText)) === false) throw "IsNotValidObjectError";
+                                if (isObject(JSON.parse(decompressedText)) === false) throw "IsNotValidObjectError";
                             } catch(error) {
                                 this.innerText = "インポート失敗。";
                                 setTimeout(() => {
@@ -199,9 +199,9 @@ Promise.all([
                             setTimeout(() => {
                                 window.location.href = window.location.href;
                             }, 1000);
-                        })
-                })
-        })
+                        });
+                });
+        });
 
         document.getElementById("item_compressionStorageExport").addEventListener("click", function() {
             let data = JSON.stringify(sortHaveJson(itemHaveList));
@@ -213,7 +213,7 @@ Promise.all([
             };
             new Response(compressedStream).blob()
                 .then(res => reader.readAsDataURL(res));
-        })
+        });
 
         document.getElementById("item_storageReset").addEventListener("click", function() {
             var result = confirm('コーデアイテムの所持データをリセットします。本当によろしいですか？');
@@ -224,5 +224,5 @@ Promise.all([
                     window.location.href = window.location.href;
                 }, 1000);
             }
-        })
-    })
+        });
+    });

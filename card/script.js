@@ -1,4 +1,5 @@
 let categoryList = [];
+let connectedCategoryList = {};
 
 let filterSettings = {
     character: [],
@@ -22,13 +23,14 @@ function sortHaveJson(json) {
     let newJson = {};
     keyList.forEach((key) => {
         newJson[key] = json[key];
-    })
+    });
     return newJson;
 }
 
 fetch("./../data/card_data.json")
     .then((r) => r.json())
     .then((res) => {
+        let count = 0;
         res.forEach((obj) => {
             const div = document.createElement("div");
             switch (obj.type) {
@@ -47,7 +49,23 @@ fetch("./../data/card_data.json")
 
             let category1 = obj.category1;
             let category2 = obj.category2;
-            if(!categoryList.includes(category1)) categoryList.push(category1);
+            let categorySP = obj.categorySP;
+            let category2forFilter = category2;
+            if (category1 === "special") category2forFilter = categorySP;
+
+            if (!categoryList.includes(category1)) categoryList.push(category1);
+            let connectedCategory = `${category1}/${category2forFilter}`;
+            if (connectedCategoryList[category1] === undefined) connectedCategoryList[category1] = [];
+            let isExistCategory = false;
+            connectedCategoryList[category1].forEach((obj) => {
+                if (obj.str === category2forFilter) {
+                    isExistCategory = true;
+                    return;
+                }
+            });
+            if (isExistCategory === false) {
+                connectedCategoryList[category1].push( { value: connectedCategory, str: category2forFilter} );
+            }
 
             const ribbon1 = document.createElement("div");
             ribbon1.className = "ribbon ribbon1";
@@ -144,7 +162,7 @@ fetch("./../data/card_data.json")
                     inp.classList.add("have");
                 }
                 localStorage.setItem("cardHaveList", JSON.stringify(haveList));
-            })
+            });
 
             const incrementButton = document.createElement("button");
             incrementButton.className = "increment";
@@ -165,7 +183,7 @@ fetch("./../data/card_data.json")
                     inp.classList.add("have");
                 }
                 localStorage.setItem("cardHaveList", JSON.stringify(haveList));
-            })
+            });
 
             const numBox = document.createElement("input");
             numBox.type = "number";
@@ -183,7 +201,7 @@ fetch("./../data/card_data.json")
                     inp.classList.add("have");
                 }
                 localStorage.setItem("cardHaveList", JSON.stringify(haveList));
-            })
+            });
             if (haveList[itemID] !== undefined) {
                 numBox.value = haveList[itemID];
                 numBox.classList.add("have");
@@ -200,15 +218,21 @@ fetch("./../data/card_data.json")
             document.getElementById("content").appendChild(div);
 
             obj.div = div;
-            obj.connectedCategory = `${category1}/${category2}`;
-        })
+            obj.connectedCategory = connectedCategory;
+
+            count++;
+        });
+        document.getElementById("count").innerText = count;
 
         categoryList.sort();
-        categoryList.forEach((category) => {
+
+        Object.keys(connectedCategoryList).forEach((category1) => {
+            const categoryBox = document.createElement("div");
+
             const categoryButton = document.createElement("button");
-            categoryButton.value = category;
+            categoryButton.value = category1;
             let category1str = "";
-            switch (category) {
+            switch (category1) {
                 case "special":
                     category1str = "スペシャル";
                     break;
@@ -219,28 +243,78 @@ fetch("./../data/card_data.json")
                     category1str = "ミルフィーカード";
                     break;
                 default:
-                    category1str = `${category}だん`;
+                    category1str = `${category1}だん`;
             }
             categoryButton.innerHTML = category1str;
             categoryButton.addEventListener("click", function() {
                 let value = this.value;
-                if(this.classList.contains("active")){
+                if (this.classList.contains("active")){
                     this.classList.remove("active");
-                    filterSettings.category = filterSettings.category.filter(i => (i !== value));
+                    document.querySelectorAll(`button.category-${value}`).forEach((element) => {
+                        element.classList.remove("active");
+                        filterSettings.category = filterSettings.category.filter(i => (i !== element.value));
+                    });
                     filter();
                 } else {
                     this.classList.add("active");
-                    filterSettings.category.push(value);
+                    document.querySelectorAll(`button.category-${value}`).forEach((element) => {
+                        element.classList.add("active");
+                        if (!filterSettings.category.includes(element.value)) filterSettings.category.push(element.value);
+                    });
                     filter();
                 }
-            })
-            document.getElementById("category-select").appendChild(categoryButton);
+            });
+            categoryBox.appendChild(categoryButton);
+
+            const categoryOpenButton = document.createElement("button");
+            categoryOpenButton.className = "category-open-button";
+            categoryOpenButton.innerHTML = "+";
+            categoryOpenButton.value = category1;
+            categoryOpenButton.addEventListener("click", function() {
+                let value = this.value;
+                let box = document.getElementById(`category-${value}-box`);
+                if (box.classList.contains("active")) {
+                    box.classList.remove("active");
+                    this.innerText = "+";
+                } else {
+                    box.classList.add("active");
+                    this.innerText = "-";
+                }
+            });
+            categoryBox.appendChild(categoryOpenButton);
+            
+            const category2Box = document.createElement("div");
+            category2Box.id = `category-${category1}-box`;
+            category2Box.className = `category-box`;
+
+            connectedCategoryList[category1].forEach((category2) => {
+                const categoryButton = document.createElement("button");
+                categoryButton.classList.add(`category-${category1}`);
+                categoryButton.value = category2.value;
+                categoryButton.innerHTML = category2.str;
+                categoryButton.addEventListener("click", function() {
+                    let value = this.value;
+                    if (this.classList.contains("active")){
+                        this.classList.remove("active");
+                        filterSettings.category = filterSettings.category.filter(i => (i !== value));
+                        filter();
+                    } else {
+                        this.classList.add("active");
+                        filterSettings.category.push(value);
+                        filter();
+                    }
+                });
+                category2Box.appendChild(categoryButton);
+            });
+            categoryBox.appendChild(category2Box);
+            
+            document.getElementById("category-select").appendChild(categoryBox);
         });
 
         document.querySelectorAll("#brand-select>button").forEach((button) => {
             button.addEventListener("click", function() {
                 let value = this.value;
-                if(this.classList.contains("active")){
+                if (this.classList.contains("active")){
                     this.classList.remove("active");
                     filterSettings.brand = filterSettings.brand.filter(i => (i !== value));
                     filter();
@@ -249,12 +323,12 @@ fetch("./../data/card_data.json")
                     filterSettings.brand.push(value);
                     filter();
                 }
-            })
-        })
+            });
+        });
         document.querySelectorAll("#character-select>button").forEach((button) => {
             button.addEventListener("click", function() {
                 let value = this.value;
-                if(this.classList.contains("active")){
+                if (this.classList.contains("active")){
                     this.classList.remove("active");
                     filterSettings.character = filterSettings.character.filter(i => (i !== value));
                     filter();
@@ -263,8 +337,8 @@ fetch("./../data/card_data.json")
                     filterSettings.character.push(value);
                     filter();
                 }
-            })
-        })
+            });
+        });
         
         function isMatchCategoryFilter(category) {
             if (filterSettings.category.length === 0) {
@@ -300,8 +374,9 @@ fetch("./../data/card_data.json")
             }
         }
         function filter() {
+            let count = 0;
             res.forEach((obj) => {
-                if (isMatchCategoryFilter(obj.category1) === false) {
+                if (isMatchCategoryFilter(obj.connectedCategory) === false) {
                     obj.div.style.display = "none";
                     return;
                 }
@@ -314,6 +389,8 @@ fetch("./../data/card_data.json")
                     return;
                 }
                 obj.div.style.display = "block";
-            })
+                count++;
+            });
+            document.getElementById("count").innerText = count;
         }
-    })
+    });

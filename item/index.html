@@ -26,28 +26,35 @@
         <header>
             <h1><a href="./../">HiMiTsuDB</a></h1>
             <div id="menu-icon">
-                <a href="../card/"><span class="mdi--cards"></span></a>
-                <a href="../item/"><span class="mdi--clothes-hanger"></span></a>
+                <a href="./../card/"><span class="mdi--cards"></span></a>
+                <a href="./../item/"><span class="mdi--clothes-hanger"></span></a>
             </div>
         </header>
         <main>
             <div class="setting-content"><h3><a href="../setting/"><span class="mdi--question-mark-circle"></span> データ管理について</a></h3></div>
-            <p class="filter-title">カテゴリー（だん）選択</p>
-            <div class="filter-settings" id="category-select"></div>
-            <p class="filter-title">ブランド選択</p>
-            <div class="filter-settings" id="brand-select">
-                <button value="ポッピンハート">ポッピンハート</button>
-                <button value="ミラクルムーン">ミラクルムーン</button>
-                <button value="フラワーマーチ">フラワーマーチ</button>
-                <button value="スカーレットバタフライ">スカーレットバタフライ</button>
-                <button value="ロゼッション">ロゼッション</button>
-                <button value="レインボーキャンディ">レインボーキャンディ</button>
-                <button value="ベアベアベア">ベアベアベア</button>
-                <button value="ラブマイミュージック">ラブマイミュージック</button>
-                <button value="プリズムストーン">プリズムストーン</button>
-                <button value="クリスタルバース">クリスタルバース</button>
-                <button value="プリティーコレクション">プリティーコレクション</button>
+            <div id="filter-grid">
+                <div>
+                    <p class="filter-title">カテゴリー（だん）選択</p>
+                    <div class="filter-settings category" id="category-select"></div>
+                </div>
+                <div>
+                    <p class="filter-title">ブランド選択</p>
+                    <div class="filter-settings" id="brand-select">
+                        <button value="ポッピンハート">ポッピンハート</button>
+                        <button value="ミラクルムーン">ミラクルムーン</button>
+                        <button value="フラワーマーチ">フラワーマーチ</button>
+                        <button value="スカーレットバタフライ">スカーレットバタフライ</button>
+                        <button value="ロゼッション">ロゼッション</button>
+                        <button value="レインボーキャンディ">レインボーキャンディ</button>
+                        <button value="ベアベアベア">ベアベアベア</button>
+                        <button value="ラブマイミュージック">ラブマイミュージック</button>
+                        <button value="プリズムストーン">プリズムストーン</button>
+                        <button value="クリスタルバース">クリスタルバース</button>
+                        <button value="プリティーコレクション">プリティーコレクション</button>
+                    </div>
+                </div>
             </div>
+            <div id="filter-result">現在 <span id="count"></span> 枚のコーデを表示しています。</div>
             <div id="content"></div>
         </main>
         <footer><p><h3>HiMiTsuDB</h3></p><p>このサイトでは、アイコンの一部に<a href="https://pictogrammers.com/library/mdi/">Material Design Icons</a>を使用しています。</p></footer>
