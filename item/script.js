@@ -152,10 +152,10 @@ Promise.all([
                 decrementButton.addEventListener("click", function() {
                     const inp = this.parentElement.querySelector("input");
                     const value = inp.value;
-    
+
                     const newValue = value > 0 ? parseInt(value) - 1 : 0;
                     inp.value = newValue;
-    
+
                     const id = inp.getAttribute("itemID");
                     if (newValue === 0){
                         delete haveList[id];
@@ -179,10 +179,10 @@ Promise.all([
                 incrementButton.addEventListener("click", function() {
                     const inp = this.parentElement.querySelector("input");
                     const value = inp.value;
-    
+
                     const newValue = value === "" ? 1 : parseInt(value) + 1;
                     inp.value = newValue;
-    
+
                     const id = inp.getAttribute("itemID");
                     if (newValue === 0){
                         delete haveList[id];
