@@ -178,8 +178,12 @@ main a:hover {
     border: 0.5rem solid #cccccc;
     box-sizing: border-box;
     text-align: center;
-    display: inline-block;
+    display: block;
     background: #ffffff;
+}
+
+.menu-button-content:hover {
+    background: #eeeeee;
 }
 
 .menu-button-content#link-card, .menu-button-content#link-item {
@@ -215,21 +219,22 @@ main a:hover {
     }
 }
 
-.menu-button-content>a {
-    width: 100%;
-    height: 100%;
+.menu-button-content {
     font-size: 2rem;
     font-weight: bold;
 }
 
-.menu-button-content>a>span {
-    color: darkorange;
+.menu-button-content>span {
     width: 90%;
     height: 90%;
 }
 
-.menu-button-content>a>span:hover {
-    color: darkgoldenrod;
+.menu-button-content#link-card>span {
+    color: rgb(255, 150, 255);
+}
+
+.menu-button-content#link-item>span {
+    color: rgb(150, 255, 255);
 }
 
 
@@ -388,7 +393,7 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    padding: 0.5rem;
+    padding: 1rem;
     width: calc(100% - 1rem);
     text-align: center;
     border: 0.23rem solid;
@@ -532,7 +537,7 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
     font-size: 1.2rem;
     position: absolute;
     left: 0;
-    top: 4.5rem;
+    top: 4.7rem;
 }
 
 #content .partIconDiv {
