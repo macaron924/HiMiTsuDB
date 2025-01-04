@@ -335,7 +335,7 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
 
 .filter-title {
     padding: 0.5rem;
-    line-height: 3rem;
+    line-height: 4rem;
     font-size: 1.8rem;
 }
 
@@ -352,9 +352,19 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
 .filter-settings button {
     background: #ffffff;
     margin: 0.5rem;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     text-align: center;
-    border: 0.1rem solid #000000;
+    border: 0.3rem solid #cccccc;
+    height: 4rem;
+    border-radius: 2rem;
+}
+
+#filter-grid.button-pink button {
+    border: 0.3rem solid #fe9bf2;
+}
+
+#filter-grid.button-lightblue button {
+    border: 0.3rem solid #66d9fe;
 }
 
 .filter-settings button.active {
@@ -362,7 +372,7 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
 }
 
 .filter-settings .category-open-button {
-    width: 3rem;
+    width: 4rem;
 }
 
 .filter-settings .category-box {
