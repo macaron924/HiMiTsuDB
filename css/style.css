@@ -98,28 +98,38 @@ header {
     background-color: lightyellow;
     position: sticky;
     top: 0;
+    display: flex;
+    align-items: center;
+    height: 6rem;
 }
 
 header h1 {
     margin: 1rem;
+    flex-grow: 1;
 }
 
-header #menu-icon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 1rem;
+header a#link-card, header a#link-item {
+    display: block;
+    height: 100%;
+    aspect-ratio: 1 / 1;
 }
 
-header #menu-icon span {
-    margin: 0.5rem 0;
-    width: 4.5rem;
-    height: 4.5rem;
-    color: darkorange;
+header a#link-card:hover, header a#link-item:hover {
+    background-color: rgb(255, 255, 150);
 }
 
-header #menu-icon span:hover {
-    color: darkgoldenrod;
+header #link-card>span, header #link-item>span {
+    margin: 0.3rem;
+    height: calc(100% - 0.6rem);
+    width: calc(100% - 0.6rem);
+}
+
+header #link-card>span {
+    color: rgb(255, 150, 255);
+}
+
+header #link-item>span {
+    color: rgb(150, 255, 255);
 }
 
 
