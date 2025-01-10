@@ -4,9 +4,8 @@ let connectedCategoryList = {};
 let inputRefList = {};
 
 let filterSettings = {
-    character: [],
+    rarity: [],
     brand: [],
-    music: [],
     category: []
 }
 
@@ -334,6 +333,20 @@ Promise.all([
             document.getElementById("category-select").appendChild(categoryBox);
         });
 
+        document.querySelectorAll("#rarity-select>button").forEach((button) => {
+            button.addEventListener("click", function() {
+                let value = this.value;
+                if (this.classList.contains("active")){
+                    this.classList.remove("active");
+                    filterSettings.rarity = filterSettings.rarity.filter(i => (i !== value));
+                    filter();
+                } else {
+                    this.classList.add("active");
+                    filterSettings.rarity.push(value);
+                    filter();
+                }
+            });
+        });
         document.querySelectorAll("#brand-select>button").forEach((button) => {
             button.addEventListener("click", function() {
                 let value = this.value;
@@ -360,6 +373,17 @@ Promise.all([
                 }
             }
         }
+        function isMatchRarityFilter(rarity) {
+            if (filterSettings.rarity.length === 0) {
+                return true;
+            } else {
+                if (filterSettings.rarity.includes(String(rarity))) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
         function isMatchBrandFilter(brand) {
             if (filterSettings.brand.length === 0) {
                 return true;
@@ -379,6 +403,10 @@ Promise.all([
                     return;
                 }
                 if (isMatchBrandFilter(obj.brandName) === false) {
+                    obj.div.style.display = "none";
+                    return;
+                }
+                if (isMatchRarityFilter(obj.rarity) === false) {
                     obj.div.style.display = "none";
                     return;
                 }
