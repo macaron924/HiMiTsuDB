@@ -229,7 +229,7 @@ Promise.all([
                     numBoxDiv.classList.add("have")
                 }
                 inputRefList[itemID].push(numBox)
-                
+
                 numBoxDiv.appendChild(partIconDiv);
                 numBoxDiv.appendChild(haveRibbon);
                 numBoxDiv.appendChild(decrementButton);
@@ -246,7 +246,7 @@ Promise.all([
             count++;
         });
         document.getElementById("count").innerText = count;
-        
+
         categoryList.sort();
 
         Object.keys(connectedCategoryList).forEach((category1) => {
@@ -305,7 +305,7 @@ Promise.all([
                 }
             });
             categoryBox.appendChild(categoryOpenButton);
-            
+
             const category2Box = document.createElement("div");
             category2Box.id = `category-${category1}-box`;
             category2Box.className = `category-box`;
@@ -330,7 +330,7 @@ Promise.all([
                 category2Box.appendChild(categoryButton);
             });
             categoryBox.appendChild(category2Box);
-            
+
             document.getElementById("category-select").appendChild(categoryBox);
         });
 
@@ -348,7 +348,7 @@ Promise.all([
                 }
             });
         });
-        
+
         function isMatchCategoryFilter(category) {
             if (filterSettings.category.length === 0) {
                 return true;

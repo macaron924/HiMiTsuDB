@@ -2,6 +2,7 @@ let categoryList = [];
 let connectedCategoryList = {};
 
 let filterSettings = {
+    chance: "all",
     character: [],
     brand: [],
     music: [],
@@ -282,7 +283,7 @@ fetch("./../data/card_data.json")
                 }
             });
             categoryBox.appendChild(categoryOpenButton);
-            
+
             const category2Box = document.createElement("div");
             category2Box.id = `category-${category1}-box`;
             category2Box.className = `category-box`;
@@ -307,10 +308,29 @@ fetch("./../data/card_data.json")
                 category2Box.appendChild(categoryButton);
             });
             categoryBox.appendChild(category2Box);
-            
+
             document.getElementById("category-select").appendChild(categoryBox);
         });
 
+        document.querySelectorAll("#chance-select>button").forEach((button) => {
+            button.addEventListener("click", function() {
+                let value = this.value;
+                document.querySelectorAll("#chance-select>button").forEach((button) => {
+                    button.classList.remove("active");
+                });
+                this.classList.add("active");
+                filterSettings.chance = value;
+                filter();
+            });
+        });
+
+        document.getElementById("music-select-title").addEventListener("click", function() {
+            if (document.getElementById("music-select").classList.contains("invisible")){
+                document.getElementById("music-select").classList.remove("invisible");
+            } else {
+                document.getElementById("music-select").classList.add("invisible");
+            }
+        });
         document.querySelectorAll("#music-select>button").forEach((button) => {
             button.addEventListener("click", function() {
                 let value = this.value;
@@ -353,7 +373,18 @@ fetch("./../data/card_data.json")
                 }
             });
         });
-        
+
+        function isMatchChanceFilter(chance) {
+            if (filterSettings.chance === "all") {
+                return true;
+            } else {
+                if (filterSettings.chance === chance.toString()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
         function isMatchCategoryFilter(category) {
             if (filterSettings.category.length === 0) {
                 return true;
@@ -401,6 +432,10 @@ fetch("./../data/card_data.json")
         function filter() {
             let count = 0;
             res.forEach((obj) => {
+                if (isMatchChanceFilter(obj.chance) === false) {
+                    obj.div.style.display = "none";
+                    return;
+                }
                 if (isMatchCategoryFilter(obj.connectedCategory) === false) {
                     obj.div.style.display = "none";
                     return;

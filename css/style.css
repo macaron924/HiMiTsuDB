@@ -386,6 +386,10 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
     justify-content: left;
 }
 
+.filter-settings#music-select.invisible {
+    display: none;
+}
+
 #filter-result {
     margin: 1rem 0.5rem;
     font-size: 2rem;
@@ -435,7 +439,7 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
 }
 
 #content div.nameDiv {
-    height: 4.5rem;
+    min-height: 4.5rem;
     font-size: 2rem;
 }
 
