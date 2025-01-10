@@ -100,7 +100,7 @@ fetch("./../data/card_data.json")
             if (notPromotion === true) {
                 idDiv.innerText = itemID;
             } else {
-                idDiv.innerText = "";
+                idDiv.innerText = obj.idSP;
             }
             div.appendChild(idDiv);
 
