@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head prefix="og: https://ogp.me/ns#">
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta property="og:url" content="https://macaron924.github.io/HiMiTsuDB/item_not_on_list/">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="HiMiTsuDB">
+        <meta property="og:description" content="ひみつのDB">
+        <meta property="og:site_name" content="HiMiTsuDB">
+        <meta property="og:image" content="https://macaron924.github.io/HiMiTsuDB/images/icon.png">
+        <meta name="twitter:card" content="summary">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="./../images/icon.png">
+        <link rel="manifest" href="./../manifest.json">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://unpkg.com/destyle.css@1.0.5/destyle.css">
+        <link rel="stylesheet" href="./../css/style.css">
+        <script src="./script.js" defer></script>
+
+        <title>Item - HiMiTsuDB</title>
+    </head>
+
+    <body>
+        <header>
+            <h1><a href="./../">HiMiTsuDB</a></h1>
+            <a href="./../card/" id="link-card"><span class="mdi--cards"></span></a>
+            <a href="./../item/" id="link-item"><span class="mdi--clothes-hanger"></span></a>
+        </header>
+        <main>
+            <div class="setting-content"><h3><a href="../setting/"><span class="mdi--question-mark-circle"></span> データ管理について</a></h3></div>
+            <div id="filter-grid" class="button-lightblue">
+                <div>
+                    <p class="filter-title">カテゴリー（だん）選択</p>
+                    <div class="filter-settings category" id="category-select"></div>
+                </div>
+                <div>
+                    <p class="filter-title">レアリティ選択</p>
+                    <div class="filter-settings" id="rarity-select">
+                        <button value="4">★★★★</button>
+                        <button value="3">★★★</button>
+                        <button value="2">★★</button>
+                        <button value="0">スペシャル</button>
+                    </div>
+                    <p class="filter-title">ブランド選択</p>
+                    <div class="filter-settings" id="brand-select">
+                        <button value="ポッピンハート">ポッピンハート</button>
+                        <button value="ミラクルムーン">ミラクルムーン</button>
+                        <button value="フラワーマーチ">フラワーマーチ</button>
+                        <button value="スカーレットバタフライ">スカーレットバタフライ</button>
+                        <button value="ロゼッション">ロゼッション</button>
+                        <button value="レインボーキャンディ">レインボーキャンディ</button>
+                        <button value="ベアベアベア">ベアベアベア</button>
+                        <button value="ラブマイミュージック">ラブマイミュージック</button>
+                        <button value="プリズムストーン">プリズムストーン</button>
+                        <button value="クリスタルバース">クリスタルバース</button>
+                        <button value="プリティーコレクション">プリティーコレクション</button>
+                    </div>
+                </div>
+            </div>
+            <div id="filter-result">現在 <span id="count"></span> コーデを表示しています。</div>
+            <div id="content"></div>
+        </main>
+        <footer><p><h3>HiMiTsuDB</h3></p><p>このサイトでは、アイコンの一部に<a href="https://pictogrammers.com/library/mdi/">Material Design Icons</a>を使用しています。</p></footer>
+    </body>
+</html>
