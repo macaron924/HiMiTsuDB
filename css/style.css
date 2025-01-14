@@ -186,6 +186,7 @@ main a:hover {
 
 .menu-button-content {
     border: 0.5rem solid #cccccc;
+    border-radius: 2rem;
     box-sizing: border-box;
     text-align: center;
     display: block;
