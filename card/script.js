@@ -252,6 +252,7 @@ fetch("./../data/card_data.json")
                     category1str = `${category1}だん`;
             }
             categoryButton.innerHTML = category1str;
+            categoryButton.id = `category-${category1}-button`;
             categoryButton.addEventListener("click", function() {
                 let value = this.value;
                 if (this.classList.contains("active")){
@@ -300,13 +301,23 @@ fetch("./../data/card_data.json")
                 categoryButton.innerHTML = category2.str;
                 categoryButton.addEventListener("click", function() {
                     let value = this.value;
+                    const thisCategory1 = value.split("/")[0];
                     if (this.classList.contains("active")){
                         this.classList.remove("active");
                         filterSettings.category = filterSettings.category.filter(i => (i !== value));
+                        function existSameCategory1(thisCategory1) {
+                            let judge = false;
+                            filterSettings.category.forEach((selectedCategory2) => {
+                                if (selectedCategory2.split("/")[0] === thisCategory1) judge = true;
+                            });
+                            return judge;
+                        }
+                        if (existSameCategory1(thisCategory1) === false) document.getElementById(`category-${thisCategory1}-button`).classList.remove("active");
                         filter();
                     } else {
                         this.classList.add("active");
                         filterSettings.category.push(value);
+                        document.getElementById(`category-${thisCategory1}-button`).classList.add("active");
                         filter();
                     }
                 });
