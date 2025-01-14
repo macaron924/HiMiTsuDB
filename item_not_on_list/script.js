@@ -87,6 +87,9 @@ fetch("./../data/coordinate_not_on_list_data.json")
             categoryDiv.innerText = `${category1str} / ${category2}`;
             div.appendChild(categoryDiv);
 
+            const numBoxDivContainer = document.createElement("div");
+            numBoxDivContainer.className = "numBoxDivContainer";
+
             PART_LIST.forEach((part) => {
                 const itemIdArray = obj[part].split(" ");
                 const itemID = itemIdArray[0];
@@ -200,8 +203,10 @@ fetch("./../data/coordinate_not_on_list_data.json")
                 numBoxDiv.appendChild(decrementButton);
                 numBoxDiv.appendChild(numBox);
                 numBoxDiv.appendChild(incrementButton);
-                div.appendChild(numBoxDiv);
+                numBoxDivContainer.appendChild(numBoxDiv);
             });
+
+            div.appendChild(numBoxDivContainer);
 
             document.getElementById("content").appendChild(div);
 

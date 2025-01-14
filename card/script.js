@@ -129,6 +129,9 @@ fetch("./../data/card_data.json")
             categoryDiv.innerText = `${category1str} / ${category2}`;
             div.appendChild(categoryDiv);
 
+            const numBoxDivContainer = document.createElement("div");
+            numBoxDivContainer.className = "numBoxDivContainer";
+
             const numBoxDiv = document.createElement("div");
             numBoxDiv.className = "numBoxDiv";
 
@@ -214,7 +217,9 @@ fetch("./../data/card_data.json")
             numBoxDiv.appendChild(decrementButton);
             numBoxDiv.appendChild(numBox);
             numBoxDiv.appendChild(incrementButton);
-            div.appendChild(numBoxDiv);
+            numBoxDivContainer.appendChild(numBoxDiv);
+
+            div.appendChild(numBoxDivContainer);
 
             document.getElementById("content").appendChild(div);
 
