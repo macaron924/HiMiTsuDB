@@ -545,10 +545,10 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
     position: relative;
     font-size: 2rem;
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 4.8rem;
     margin-bottom: 4.8rem;
     width: calc(100% - 4rem);
-    max-width: 16rem;
+    max-width: 20rem;
     padding: 0;
     margin-left: 3.5rem;
     border: 0.1rem solid #000000;
