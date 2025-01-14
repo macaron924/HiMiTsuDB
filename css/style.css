@@ -465,9 +465,6 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
 }
 
 #content div.idDiv {
-    position: absolute;
-    top: 0.5;
-    left: 0.5;
     margin-left: 2rem;
     text-align: left;
 }
