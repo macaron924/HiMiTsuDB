@@ -28,7 +28,7 @@ function sortHaveJson(json) {
     return newJson;
 }
 
-fetch("./../data/coordinate_not_on_list_data.json")
+fetch("./../data/unlisted_coordinate_data.json")
     .then((r) => r.json())
     .then((res) => {
         let coordinateRes = res;
