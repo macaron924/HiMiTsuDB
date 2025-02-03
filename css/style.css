@@ -625,21 +625,21 @@ textarea#item_dataInput, textarea#item_compressionDataInput {
 }
 
 #content .part-one-piece>.partIconDiv {
-    background-image: url("../images/one-piece.png");
+    background-image: url("../img/one-piece.png");
 }
 
 #content .part-tops>.partIconDiv {
-    background-image: url("../images/tops.png");
+    background-image: url("../img/tops.png");
 }
 
 #content .part-bottoms>.partIconDiv {
-    background-image: url("../images/bottoms.png");
+    background-image: url("../img/bottoms.png");
 }
 
 #content .part-shoes>.partIconDiv {
-    background-image: url("../images/shoes.png");
+    background-image: url("../img/shoes.png");
 }
 
 #content .part-accessory>.partIconDiv {
-    background-image: url("../images/accessory.png");
+    background-image: url("../img/accessory.png");
 }
