@@ -133,7 +133,7 @@ Promise.all([
                             originCategory1str = "ミルフィーカード";
                             break;
                         default:
-                            originCategory1str = `${category1}だん`;
+                            originCategory1str = `${originCategory1}だん`;
                     }
                     reDetailDiv.innerText = `初登場: ${originCategory1str} / ${originCategory2}`;
                     numBoxDiv.appendChild(reDetailDiv);
